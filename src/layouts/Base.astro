@@ -16,14 +16,17 @@ const {
   pageClass = ''
 } = Astro.props;
 
+const B = import.meta.env.BASE_URL;
+const u = (p: string) => (B + p.replace(/^\//, '')).replace(/\/{2,}/g, '/');
+
 const navItems: { href: string; label: string; key: NonNullable<Props['activeNav']> }[] = [
-  { href: '/urun', label: 'Ürün', key: 'urun' },
-  { href: '/skills', label: "Skill'ler", key: 'skills' },
-  { href: '/fiyat', label: 'Fiyat', key: 'fiyat' },
-  { href: '/case-studies', label: 'Vakalar', key: 'case-studies' },
-  { href: '/blog', label: 'Blog', key: 'blog' },
-  { href: '/kvkk-guvenlik', label: 'KVKK & Güvenlik', key: 'kvkk' },
-  { href: '/hakkimizda', label: 'Hakkımızda', key: 'hakkimizda' }
+  { href: u('/urun'), label: 'Ürün', key: 'urun' },
+  { href: u('/skills'), label: "Skill'ler", key: 'skills' },
+  { href: u('/fiyat'), label: 'Fiyat', key: 'fiyat' },
+  { href: u('/case-studies'), label: 'Vakalar', key: 'case-studies' },
+  { href: u('/blog'), label: 'Blog', key: 'blog' },
+  { href: u('/kvkk-guvenlik'), label: 'KVKK & Güvenlik', key: 'kvkk' },
+  { href: u('/hakkimizda'), label: 'Hakkımızda', key: 'hakkimizda' }
 ];
 ---
 <!doctype html>
@@ -32,8 +35,8 @@ const navItems: { href: string; label: string; key: NonNullable<Props['activeNav
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content={description} />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="alternate icon" type="image/png" href="/logo.png" />
+  <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
+  <link rel="alternate icon" type="image/png" href={u('/logo.png')} />
   <title>{title}</title>
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -47,15 +50,15 @@ const navItems: { href: string; label: string; key: NonNullable<Props['activeNav
 
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="/"><img src="/logo.png" alt="DijitA" /></a>
+    <a class="nav-logo" href={u('/')}><img src={u('/logo.png')} alt="DijitA" /></a>
     <div class="nav-links">
       {navItems.map(({ href, label, key }) => (
         <a href={href} class={activeNav === key ? 'active' : ''}>{label}</a>
       ))}
     </div>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="/iletisim">İletişim</a>
-      <a class="btn btn-primary btn-sm" href="/iletisim">Demo talep et</a>
+      <a class="btn btn-ghost btn-sm" href={u('/iletisim')}>İletişim</a>
+      <a class="btn btn-primary btn-sm" href={u('/iletisim')}>Demo talep et</a>
     </div>
   </div>
 </nav>
@@ -68,29 +71,29 @@ const navItems: { href: string; label: string; key: NonNullable<Props['activeNav
   <div class="shell">
     <div class="footer-grid">
       <div>
-        <div class="foot-logo"><img src="/logo.png" alt="DijitA" /></div>
+        <div class="foot-logo"><img src={u('/logo.png')} alt="DijitA" /></div>
         <p class="foot-note">DijitAs · KOBİ'ler için yapay zekâ operasyon asistanı. Ofis cihazında çalışır, veri Türkiye'de kalır.</p>
       </div>
       <div>
         <h5>Ürün</h5>
-        <a href="/urun">Nasıl çalışır</a>
-        <a href="/skills">Skill'ler</a>
-        <a href="/fiyat">Fiyat</a>
-        <a href="/iletisim">Demo talep et</a>
+        <a href={u('/urun')}>Nasıl çalışır</a>
+        <a href={u('/skills')}>Skill'ler</a>
+        <a href={u('/fiyat')}>Fiyat</a>
+        <a href={u('/iletisim')}>Demo talep et</a>
       </div>
       <div>
         <h5>Güven</h5>
-        <a href="/kvkk-guvenlik">KVKK &amp; Güvenlik</a>
-        <a href="/politika/aydinlatma">Aydınlatma metni</a>
-        <a href="/politika/cerez">Çerez politikası</a>
-        <a href="/politika/kullanim">Kullanım koşulları</a>
+        <a href={u('/kvkk-guvenlik')}>KVKK &amp; Güvenlik</a>
+        <a href="#">Aydınlatma metni</a>
+        <a href="#">Çerez politikası</a>
+        <a href="#">Kullanım koşulları</a>
       </div>
       <div>
         <h5>Şirket</h5>
-        <a href="/hakkimizda">Hakkımızda</a>
-        <a href="/case-studies">Vakalar</a>
-        <a href="/blog">Blog</a>
-        <a href="/iletisim">İletişim</a>
+        <a href={u('/hakkimizda')}>Hakkımızda</a>
+        <a href={u('/case-studies')}>Vakalar</a>
+        <a href={u('/blog')}>Blog</a>
+        <a href={u('/iletisim')}>İletişim</a>
       </div>
       <div>
         <h5>İletişim</h5>
@@ -106,7 +109,21 @@ const navItems: { href: string; label: string; key: NonNullable<Props['activeNav
   </div>
 </footer>
 
-<script is:inline>
+<script is:inline define:vars={{ BASE: B }}>
+  // GitHub Pages base prefix: rewrite absolute hrefs/srcs that live under app root but were authored with "/".
+  (function () {
+    if (!BASE || BASE === '/') return;
+    function fix(attr, sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        var v = el.getAttribute(attr);
+        if (!v || v.indexOf(BASE) === 0 || v.indexOf('//') === 0 || v.indexOf('mailto:') === 0 || v.indexOf('#') === 0) return;
+        if (v.charAt(0) === '/') el.setAttribute(attr, BASE + v.slice(1));
+      });
+    }
+    function run() { fix('href', 'a[href^="/"]'); fix('src', 'img[src^="/"]'); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+    else run();
+  })();
   if (window.lucide) window.lucide.createIcons();
 </script>
 
