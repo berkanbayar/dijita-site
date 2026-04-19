@@ -1,0 +1,155 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="İletişim · DijitAs" activeNav="iletisim" description="DijitAs demo talep formu, doğrudan iletişim bilgileri ve Ankara merkez ofis.">
+
+<style>
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .form { background: #fff; border: 1px solid var(--border-1); border-radius: 12px; padding: 36px; }
+  .form h3 { font: 600 20px var(--font-display); color: var(--fg-1); margin-bottom: 6px; letter-spacing: -0.015em; }
+  .form p.sub { font-size: 14px; color: var(--fg-3); margin-bottom: 24px; }
+  .field { display: grid; gap: 6px; margin-bottom: 18px; }
+  .field label { font: 600 12px var(--font-mono); color: var(--fg-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .field input, .field textarea, .field select { font: 500 14px var(--font-sans); padding: 10px 13px; border: 1px solid var(--border-2); border-radius: 6px; background: #fff; color: var(--fg-1); outline: none; transition: border-color .15s, box-shadow .15s; }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--dj-cyan-500); box-shadow: 0 0 0 3px var(--dj-cyan-100); }
+  .field textarea { resize: vertical; min-height: 100px; font-family: var(--font-sans); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .checkbox { display: flex; gap: 10px; align-items: flex-start; margin: 8px 0 20px; font-size: 13px; color: var(--fg-2); line-height: 1.45; }
+  .checkbox input { margin-top: 2px; }
+  .side { display: flex; flex-direction: column; gap: 28px; }
+  .side-card { background: #fff; border: 1px solid var(--border-1); border-radius: 10px; padding: 24px 26px; }
+  .side-card h4 { font: 600 15px var(--font-sans); color: var(--fg-1); margin-bottom: 10px; }
+  .side-card .line { display: flex; gap: 12px; align-items: center; padding: 8px 0; font-size: 14px; color: var(--fg-2); }
+  .side-card .line svg { width: 16px; height: 16px; color: var(--dj-cyan-600); }
+  .side-card .line b { color: var(--fg-1); font-weight: 600; }
+  .quick-links a { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-1); font-size: 14px; color: var(--fg-1); text-decoration: none; }
+  .quick-links a:last-child { border-bottom: none; }
+  .quick-links a:hover { color: var(--dj-cyan-600); }
+  .quick-links svg { width: 14px; height: 14px; color: var(--fg-4); }
+  .status-line { margin-top: 6px; font: 500 13px var(--font-sans); color: var(--fg-3); min-height: 16px; }
+  .status-line.ok { color: var(--dj-trust-700); }
+  .status-line.err { color: var(--dj-danger-700); }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="eyebrow">İLETİŞİM</span>
+    <h1>Bir demoyla başlayalım.</h1>
+    <p>45 dakika. Paraşüt hesabınıza test modunda bağlanırız, 3 gerçek mesaj senaryonuzu çalıştırırız. Sonunda size özel TCO tablosu ve kurulum takvimi gönderilir.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell contact-layout">
+    <form id="contact-form" class="form" action="/api/contact" method="POST">
+      <h3>Demo talep formu</h3>
+      <p class="sub">24 saat içinde Okan Kara size dönecek. Zorunlu alanlar * ile işaretli.</p>
+
+      <div class="row">
+        <div class="field"><label>Ad Soyad *</label><input name="name" placeholder="Adınız Soyadınız" required /></div>
+        <div class="field"><label>Şirket *</label><input name="company" placeholder="Şirket adı" required /></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>E-posta *</label><input name="email" type="email" placeholder="ad@sirket.com" required /></div>
+        <div class="field"><label>Telefon</label><input name="phone" placeholder="+90 ..." /></div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Çalışan Sayısı</label>
+          <select name="size">
+            <option>1–10</option><option>10–50</option><option>50–200</option><option>200+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Paraşüt kullanıyor musunuz?</label>
+          <select name="parasut">
+            <option>Evet, aktif kullanıyoruz</option>
+            <option>Evet, ama az kullanıyoruz</option>
+            <option>Hayır, başka yazılım</option>
+            <option>Hayır, hiçbir şey</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>İlgilendiğiniz paket</label>
+        <select name="plan">
+          <option>Bilmiyorum, önerin</option>
+          <option>Başlangıç (₺12.000/ay)</option>
+          <option>Operasyon (₺15.000/ay) — önerilen</option>
+          <option>Kurumsal (özel teklif)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>En çok yorulduğunuz iş</label>
+        <textarea name="pain" placeholder="Örn: Her gün 20+ müşteri bakiyesi sormak için WhatsApp'tan yazıyor, Paraşüt'e bakıp el ile cevaplıyorum..."></textarea>
+      </div>
+
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+
+      <div class="checkbox">
+        <input type="checkbox" id="kvkk" name="kvkk" required />
+        <label for="kvkk">KVKK kapsamında <a href="/kvkk-guvenlik" style="color:var(--dj-cyan-600)">aydınlatma metnini</a> okudum; iletişim bilgilerimin demo amacıyla 90 gün saklanmasına onay veriyorum.</label>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 14px" type="submit">Demo talep et →</button>
+      <div id="contact-status" class="status-line"></div>
+    </form>
+
+    <div class="side">
+      <div class="side-card">
+        <h4>Doğrudan iletişim</h4>
+        <div class="line"><i data-lucide="mail"></i><div><b>iletisim@dijitapro.com.tr</b><br><span style="font-size:12px;color:var(--fg-3)">satış + partnership</span></div></div>
+        <div class="line"><i data-lucide="shield-check"></i><div><b>kvkk@dijitapro.com.tr</b><br><span style="font-size:12px;color:var(--fg-3)">KVKK başvuruları</span></div></div>
+        <div class="line"><i data-lucide="life-buoy"></i><div><b>destek@dijitapro.com.tr</b><br><span style="font-size:12px;color:var(--fg-3)">mevcut müşteri · 4 sa SLA</span></div></div>
+        <div class="line"><i data-lucide="phone"></i><div><b>+90 312 555 07 00</b><br><span style="font-size:12px;color:var(--fg-3)">pzt–cum · 09:00–18:00</span></div></div>
+      </div>
+
+      <div class="side-card">
+        <h4>Ankara merkez ofis</h4>
+        <div class="line"><i data-lucide="map-pin"></i><div>Bilkent Cyberpark B Blok · Kat 3<br>Çankaya / Ankara</div></div>
+      </div>
+
+      <div class="side-card quick-links">
+        <h4>Hızlı bağlantılar</h4>
+        <a href="/fiyat">Fiyat ve paketler <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
+        <a href="/kvkk-guvenlik">KVKK aydınlatma metni <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
+        <a href="/case-studies">Müşteri hikâyeleri <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
+        <a href="/skills">Skill kataloğu <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('contact-status');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.className = 'status-line';
+      status.textContent = 'Gönderiliyor…';
+      const data = new FormData(form);
+      try {
+        const r = await fetch('/api/contact', { method: 'POST', body: data });
+        const j = await r.json();
+        if (r.ok) {
+          status.className = 'status-line ok';
+          status.textContent = j.message || 'Teşekkürler. 24 saat içinde dönüş yapacağız.';
+          form.reset();
+        } else {
+          status.className = 'status-line err';
+          status.textContent = j.message || 'Gönderilemedi. Lütfen tekrar deneyin.';
+        }
+      } catch (_) {
+        status.className = 'status-line err';
+        status.textContent = 'Bağlantı hatası. Lütfen tekrar deneyin.';
+      }
+    });
+  })();
+</script>
+
+</Base>

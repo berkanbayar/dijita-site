@@ -1,0 +1,306 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="DijitAs · KOBİ'ler için yapay zekâ operasyon asistanı" activeNav={null}>
+
+<style>
+  .hero { padding: 88px 0 96px; background: radial-gradient(ellipse at 80% 0%, #e6f5ff 0%, transparent 55%), linear-gradient(180deg, #fff 0%, var(--bg-2) 100%); border-bottom: 1px solid var(--border-1); position: relative; overflow: hidden; }
+  .hero-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: center; }
+  .hero-kicker { display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--border-1); border-radius: 100px; padding: 5px 12px 5px 5px; font: 500 12.5px var(--font-sans); color: var(--fg-2); margin-bottom: 22px; }
+  .hero-kicker .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--dj-cyan-500); color: #fff; display: flex; align-items: center; justify-content: center; font: 700 11px var(--font-mono); }
+  .hero-kicker b { color: var(--fg-1); font-weight: 600; }
+  .hero h1 { margin-bottom: 24px; }
+  .hero .lede { margin-bottom: 32px; max-width: 560px; }
+  .hero .ctas { display: flex; gap: 12px; margin-bottom: 40px; }
+  .hero .trust-row { padding-top: 28px; border-top: 1px solid var(--border-1); }
+  .chat-mock { background: #fff; border: 1px solid var(--border-1); border-radius: 14px; box-shadow: 0 32px 60px -30px rgba(0,32,88,0.3), 0 8px 16px -8px rgba(0,32,88,0.08); overflow: hidden; max-width: 460px; margin: 0 auto; }
+  .chat-mock .chat-head { background: linear-gradient(135deg, #2ca5e0, #229ed9); color:#fff; padding: 12px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .chat-mock .chat-head .av { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #229ed9; display: flex; align-items: center; justify-content: center; font: 700 12px var(--font-sans); }
+  .chat-mock .chat-head .name { font: 600 14px var(--font-sans); color: #fff; }
+  .chat-mock .chat-head .name small { display:block; font: 500 11px var(--font-sans); color: rgba(255,255,255,0.85); font-weight: 500; margin-top: -1px; }
+  .chat-body { background: #e6ebee; padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; min-height: 300px; }
+  .bubble { max-width: 82%; padding: 7px 10px; border-radius: 10px; font-size: 13.5px; line-height: 1.4; box-shadow: 0 1px 0.5px rgba(0,0,0,0.06); }
+  .bubble.out { background: #eeffde; align-self: flex-end; border-top-right-radius: 2px; color:#0b1320; }
+  .bubble.in { background: #fff; align-self: flex-start; border-top-left-radius: 2px; color:#0b1320; }
+  .bubble .time { font-size: 10px; color: #667781; display: block; text-align: right; margin-top: 2px; font-family: var(--font-mono); }
+  .mini-card { background: #f6faff; border: 1px solid #c9d9e8; border-radius: 5px; padding: 8px 10px; margin: 4px 0; font-size: 12px; }
+  .mini-card .label { font: 600 10px var(--font-mono); color: var(--dj-navy-900); letter-spacing: 0.05em; margin-bottom: 4px; text-transform: uppercase; }
+  .mini-card .row { display: flex; justify-content: space-between; padding: 2px 0; color: var(--fg-2); }
+  .mini-card .row b { color: var(--fg-1); font-family: var(--font-mono); }
+  .approve-prompt { background: #fff; border: 1px dashed #b2ce91; border-radius: 5px; padding: 8px 10px; margin-top: 6px; font-size: 12px; color: var(--fg-1); }
+  .approve-prompt b { background: var(--dj-cyan-50); color: var(--dj-navy-900); font-family: var(--font-mono); padding: 1px 5px; border-radius: 3px; font-weight: 700; }
+  .logos-strip { padding: 40px 0; background: var(--bg-2); border-bottom: 1px solid var(--border-1); }
+  .logos-strip .label { text-align: center; font: 500 12px var(--font-mono); color: var(--fg-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px; }
+  .logos-row { display: flex; justify-content: center; gap: 72px; flex-wrap: wrap; align-items: center; }
+  .logo-ghost { font: 600 18px var(--font-sans); color: var(--fg-4); letter-spacing: -0.01em; opacity: 0.85; }
+  .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border-1); border-radius: 8px; overflow: hidden; background: var(--border-1); }
+  .feat-cell { background: #fff; padding: 32px; gap: 1px; }
+  .flow-card { background: var(--dj-navy-900); border-radius: 14px; padding: 44px; color: #fff; position: relative; overflow: hidden; }
+  .flow-card::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(143,176,255,0.12) 1px, transparent 0); background-size: 22px 22px; opacity: 0.8; }
+  .flow-card-inner { position: relative; }
+  .flow-card h3 { font-family: var(--font-display); font-size: 26px; font-weight: 700; letter-spacing: -0.018em; margin-bottom: 8px; }
+  .flow-card p { color: #bdd0ff; font-size: 14.5px; max-width: 520px; margin-bottom: 36px; }
+  .flow { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .flow-node { background: rgba(0,160,255,0.08); border: 1px solid rgba(0,160,255,0.4); border-radius: 8px; padding: 14px 16px; min-width: 140px; }
+  .flow-node .lbl { font: 600 10px var(--font-mono); color: var(--dj-cyan-400); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .flow-node .ttl { font: 600 14px var(--font-sans); color: #fff; }
+  .flow .arrow { color: var(--dj-cyan-500); }
+  .skills-preview { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-1); border: 1px solid var(--border-1); border-radius: 8px; overflow: hidden; }
+  .skill-cell { background: #fff; padding: 22px; display: flex; flex-direction: column; gap: 8px; transition: background var(--dur-fast) var(--ease-standard); cursor: pointer; }
+  .skill-cell:hover { background: var(--bg-3); }
+  .skill-cell .num { font: 500 11px var(--font-mono); color: var(--fg-3); }
+  .skill-cell h4 { font: 600 14px var(--font-sans); color: var(--fg-1); letter-spacing: -0.008em; }
+  .skill-cell p { font-size: 12.5px; line-height: 1.5; color: var(--fg-3); }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .blog-card { display: flex; flex-direction: column; }
+  .blog-card .thumb { aspect-ratio: 16/9; border-radius: 8px; border: 1px solid var(--border-1); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; font: 500 12px var(--font-mono); color: var(--fg-3); background: linear-gradient(135deg, var(--bg-3), var(--bg-4)); letter-spacing: 0.06em; }
+  .blog-card .thumb.t1 { background: linear-gradient(135deg, #e6f5ff, #cceaff); color: var(--dj-navy-900); }
+  .blog-card .thumb.t2 { background: linear-gradient(135deg, #f6f8fa, #eef1f5); color: var(--dj-navy-900); }
+  .blog-card .thumb.t3 { background: linear-gradient(135deg, var(--dj-navy-900), var(--dj-navy-700)); color: #fff; }
+  .blog-card .meta { font: 500 11px var(--font-mono); color: var(--fg-3); margin-bottom: 8px; letter-spacing: 0.04em; }
+  .blog-card h4 { font: 600 18px var(--font-sans); color: var(--fg-1); margin-bottom: 8px; letter-spacing: -0.012em; line-height: 1.3; }
+  .blog-card p { font-size: 14px; color: var(--fg-3); line-height: 1.55; }
+</style>
+
+<section class="hero">
+  <div class="shell hero-inner">
+    <div>
+      <span class="hero-kicker"><span class="dot">β</span><b>MVP · Nisan 2026</b> — İlk 10 pilot müşterisiyle canlı</span>
+      <h1 class="display">Asistanınız ofiste çalışır.<br>Kurumsal veriniz&nbsp;yurt içinde&nbsp;kalır.</h1>
+      <p class="lede">DijitAs, Paraşüt'e konuşur, Telegram'dan cevap verir, fatura keser — ancak her kritik aksiyonda sizden <b style="background:var(--dj-cyan-50);color:var(--dj-navy-900);font-family:var(--font-mono);font-size:14px;padding:1px 6px;border-radius:3px;border:1px solid var(--dj-cyan-200)">ONAYLIYORUM</b> onayı bekler. Paraşüt verisi ofis cihazında durur; LLM'e yalnızca anonim intent metni gider.</p>
+      <div class="ctas">
+        <a class="btn btn-primary btn-lg" href="/iletisim">Demo talep et <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
+        <a class="btn btn-secondary btn-lg" href="/urun"><i data-lucide="play" style="width:16px;height:16px"></i> 3 dakikalık ürün turu</a>
+      </div>
+      <div class="trust-row">
+        <span><i data-lucide="shield-check" style="width:15px;height:15px;color:var(--dj-trust-500)"></i> <b>KVKK uyumlu</b>, veri yurt içinde</span>
+        <span><i data-lucide="cpu" style="width:15px;height:15px;color:var(--fg-3)"></i> Edge-compute · ofis cihazı</span>
+        <span><i data-lucide="database" style="width:15px;height:15px;color:var(--fg-3)"></i> Paraşüt entegrasyonu</span>
+        <span><i data-lucide="send" style="width:15px;height:15px;color:var(--fg-3)"></i> Telegram birincil · WhatsApp Faz 2</span>
+      </div>
+    </div>
+    <div class="chat-mock">
+      <div class="chat-head">
+        <div class="av">DA</div>
+        <div class="name">DijitAs · Ofis Asistanı<small>Telegram · çevrimiçi</small></div>
+      </div>
+      <div class="chat-body">
+        <div class="bubble out">Akın Tekstil'e 42 bin fatura kes. 30 gün vade.<span class="time">14:12</span></div>
+        <div class="bubble in">
+          Taslağı hazırladım:
+          <div class="mini-card">
+            <div class="label">FATURA TASLAĞI · #02</div>
+            <div class="row"><span>Alıcı</span><b>Akın Tekstil</b></div>
+            <div class="row"><span>Matrah</span><b>₺35.000,00</b></div>
+            <div class="row"><span>KDV %20</span><b>₺7.000,00</b></div>
+            <div class="row"><span>Toplam</span><b>₺42.000,00</b></div>
+          </div>
+          <div class="approve-prompt">Onaylamak için yazın: <b>ONAYLIYORUM</b></div>
+          <span class="time">14:12</span>
+        </div>
+        <div class="bubble out" style="font-family:var(--font-mono);font-weight:600">ONAYLIYORUM<span class="time" style="font-family:var(--font-mono)">14:13</span></div>
+        <div class="bubble in">
+          <i data-lucide="check-circle-2" style="width:14px;height:14px;color:var(--dj-trust-500);vertical-align:-2px"></i>
+          Fatura kesildi · <b style="font-family:var(--font-mono)">FAT-2026/1142</b><br>
+          <span style="font-size:11px;color:#667781;font-family:var(--font-mono)">guard_id: a7f9c2e1 · log alındı</span>
+          <span class="time">14:13</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="logos-strip">
+  <div class="shell">
+    <div class="label">PİLOT MÜŞTERİLERİMİZ · İMALAT · TEKSTİL · GIDA · LOJİSTİK</div>
+    <div class="logos-row">
+      <span class="logo-ghost">Akın Tekstil</span>
+      <span class="logo-ghost">Doğa Kimya</span>
+      <span class="logo-ghost">Mert Gıda</span>
+      <span class="logo-ghost">Yılmaz Kardeşler</span>
+      <span class="logo-ghost">Eryıl Makine</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <span class="eyebrow">PROBLEM</span>
+    <h2 class="section-title">KOBİ patronunun gününün 3 saati idari işle geçer.</h2>
+    <p class="lede" style="margin: 16px 0 56px">Mali müşavir sistemi bilir. Sekreter günlüğü tutar. Patron ikisi arasında mekik dokur. Oysa bu işlerin %80'i tekrarlayan, kurallı ve — eğer güvenlik doğru kurgulanırsa — otomatize edilebilir.</p>
+    <div class="grid-3">
+      <div>
+        <div style="font: 700 48px var(--font-display); color: var(--dj-navy-900); letter-spacing: -0.028em; line-height: 1;">3 sa.</div>
+        <div style="font: 500 13.5px var(--font-sans); color: var(--fg-3); margin-top: 8px; line-height: 1.5;">Patron başına günlük idari iş yükü — fatura, bakiye, tahsilat, arama.</div>
+      </div>
+      <div>
+        <div style="font: 700 48px var(--font-display); color: var(--dj-navy-900); letter-spacing: -0.028em; line-height: 1;">₺48K</div>
+        <div style="font: 500 13.5px var(--font-sans); color: var(--fg-3); margin-top: 8px; line-height: 1.5;">Tipik 20 kişilik KOBİ'nin "sistem kullanan personel" aylık maliyeti.</div>
+      </div>
+      <div>
+        <div style="font: 700 48px var(--font-display); color: var(--dj-navy-900); letter-spacing: -0.028em; line-height: 1;">%0</div>
+        <div style="font: 500 13.5px var(--font-sans); color: var(--fg-3); margin-top: 8px; line-height: 1.5;">Türkiye KOBİ'lerinin KVKK uyumlu, veriyi yurt içinde tutan AI asistanı var — şu ana kadar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="shell">
+    <span class="eyebrow">ÜRÜN</span>
+    <h2 class="section-title">Muhasebe değil, operasyon asistanı.</h2>
+    <p class="lede" style="margin: 16px 0 48px">Telegram'dan yazın: "fatura kes", "bakiyeyi göster", "stok eriyorsa haber ver". Asistan Paraşüt'e konuşur, sizden onay alır, işi tamamlar ve denetlenebilir bir kayıt bırakır. (WhatsApp desteği Faz 2 — Meta Business API hattı kurulan müşteriler için.)</p>
+    <div class="feat-grid">
+      <div class="feat-cell">
+        <div class="feat-icon"><i data-lucide="message-square" style="width:18px;height:18px"></i></div>
+        <h3 class="feat-title" style="margin-bottom:8px">Telegram'dan konuşun</h3>
+        <p style="font-size:14px;line-height:1.55;color:var(--fg-2)">Ayrı bir panel açmanız gerekmez. Türkçe yazın, sesli mesaj gönderin — asistan cevap verir, taslağı hazırlar. WhatsApp hattı Faz 2 opsiyonu olarak açılır.</p>
+      </div>
+      <div class="feat-cell">
+        <div class="feat-icon"><i data-lucide="database" style="width:18px;height:18px"></i></div>
+        <h3 class="feat-title" style="margin-bottom:8px">Paraşüt'le gerçek zamanlı</h3>
+        <p style="font-size:14px;line-height:1.55;color:var(--fg-2)">Cari kart, fatura, bakiye, tahsilat, ödeme. Asistan Paraşüt'teki gerçek veriye bakar — kendi kafasından konuşmaz.</p>
+      </div>
+      <div class="feat-cell">
+        <div class="feat-icon"><i data-lucide="shield-check" style="width:18px;height:18px"></i></div>
+        <h3 class="feat-title" style="margin-bottom:8px">Onaysız aksiyon yok</h3>
+        <p style="font-size:14px;line-height:1.55;color:var(--fg-2)">Fatura, tahsilat, sipariş — hepsi <b style="font-family:var(--font-mono);background:var(--dj-cyan-50);padding:1px 5px;border-radius:3px;font-size:12px">ONAYLIYORUM</b> gerektirir. Her onay 7 yıl saklanır.</p>
+      </div>
+    </div>
+    <div class="flow-card" style="margin-top:24px">
+      <div class="flow-card-inner">
+        <h3>Fatura kesme · tek uçtan diğerine</h3>
+        <p>"Akın Tekstil'e 42 bin fatura kes" → asistan taslak hazırlar → ONAYLIYORUM → Paraşüt'e gönderilir → onay kaydı 7 yıl saklanır.</p>
+        <div class="flow">
+          <div class="flow-node"><div class="lbl">Giriş</div><div class="ttl">Telegram mesajı</div></div>
+          <i data-lucide="arrow-right" class="arrow"></i>
+          <div class="flow-node"><div class="lbl">Ofis cihazı</div><div class="ttl">DijitAs · intent + skill</div></div>
+          <i data-lucide="arrow-right" class="arrow"></i>
+          <div class="flow-node"><div class="lbl">Onay</div><div class="ttl">ONAYLIYORUM</div></div>
+          <i data-lucide="arrow-right" class="arrow"></i>
+          <div class="flow-node"><div class="lbl">API</div><div class="ttl">Paraşüt V4</div></div>
+          <i data-lucide="arrow-right" class="arrow"></i>
+          <div class="flow-node"><div class="lbl">Kayıt</div><div class="ttl">onay_log · 7 yıl</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px">
+      <div>
+        <span class="eyebrow">SKILL'LER</span>
+        <h2 class="section-title">15 çekirdek yetenek. Her biri tek tek denetlenebilir.</h2>
+      </div>
+      <a class="btn btn-secondary" href="/skills">Tüm skill'ler <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+    </div>
+    <div class="skills-preview">
+      <div class="skill-cell"><span class="num">#01</span><h4>Gelen fatura işleme</h4><p>Mail/Telegram'a düşen faturayı OCR ile okuyup Paraşüt'e kaydeder.</p></div>
+      <div class="skill-cell"><span class="num">#02</span><h4>Giden fatura kesme</h4><p>Cari + tutar söyleyin, taslak hazırlar, onay alır, keser.</p></div>
+      <div class="skill-cell"><span class="num">#03</span><h4>Bakiye &amp; tahsilat</h4><p>Cari bakiyesi, vadesi gelen tahsilat, borçlu müşteri.</p></div>
+      <div class="skill-cell"><span class="num">#04</span><h4>Sipariş takibi</h4><p>Açık siparişler, üretim, sevk, faturalandırma akışı.</p></div>
+      <div class="skill-cell"><span class="num">#05</span><h4>Görüşme özeti</h4><p>Sesli notları transkript eder, aksiyon ve hatırlatma çıkarır.</p></div>
+      <div class="skill-cell"><span class="num">#07</span><h4>Stok uyarıları</h4><p>BOM üzerinden kritik seviye altı malzemeyi bildirir.</p></div>
+      <div class="skill-cell"><span class="num">#08</span><h4>Günlük brifing</h4><p>Sabah 08:00'de dün özeti + bugün öncelikleri.</p></div>
+      <div class="skill-cell"><span class="num">+8</span><h4>Ve 8 skill daha</h4><p>Teklif, banka mutabakatı, e-fatura arşivi, iptal…</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="shell">
+    <div class="kvkk-strip">
+      <div>
+        <span class="badge badge-green" style="margin-bottom:14px"><i data-lucide="shield-check" style="width:11px;height:11px"></i>KVKK &amp; GÜVENLİK</span>
+        <h3 style="font-family:var(--font-display);font-size:28px;line-height:1.2;letter-spacing:-0.02em;font-weight:700;color:var(--dj-navy-900);margin-bottom:12px">Veri nerede durur, kim erişir, ne kadar saklanır — hepsi yazılı.</h3>
+        <p style="font-size:15px;color:var(--fg-2);line-height:1.6;margin-bottom:20px">Paraşüt cari, fatura, tahsilat verisi ofis cihazında ve yurt içi yedekte kalır. LLM sağlayıcılara yalnızca anonimleştirilmiş intent metni (cari/tutar maskelenmiş) gider. Mesajlaşma Telegram Bot API üzerinden (Faz 2'de WhatsApp Business API opsiyonu). Tüm 3. parti akışları KVKK sayfasında listelidir.</p>
+        <a class="btn btn-secondary btn-sm" href="/kvkk-guvenlik">KVKK raporunu oku <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
+      <div class="kvkk-facts">
+        <div class="kvkk-fact"><div class="k">VERİ YURT İÇİ</div><div class="v">LUKS disk şifreleme · ofis cihazı</div></div>
+        <div class="kvkk-fact"><div class="k">YÖNETİM ERİŞİMİ</div><div class="v">Tailscale SSH · key-only auth</div></div>
+        <div class="kvkk-fact"><div class="k">LOG SAKLAMA</div><div class="v">Onay kaydı 7 yıl · işlem log 90g</div></div>
+        <div class="kvkk-fact"><div class="k">3. PARTİ</div><div class="v">Paraşüt, Resend (EU), Plausible</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px">
+      <div>
+        <span class="eyebrow">DÜŞÜNCE ÖNDERLİĞİ</span>
+        <h2 class="section-title">KOBİ + AI alanında yazıyoruz.</h2>
+      </div>
+      <a class="btn btn-secondary" href="/blog">Tüm yazılar <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+    </div>
+    <div class="blog-grid">
+      <a class="blog-card" href="/blog">
+        <div class="thumb t1">EDGE-COMPUTE</div>
+        <div class="meta">12 NİSAN 2026 · 7 DK OKUMA</div>
+        <h4>KOBİ için AI asistanı neden bulutta değil, ofiste olmalı?</h4>
+        <p>Veri egemenliği, KVKK, latency ve maliyet — yurt içinde edge-compute'un dört gerekçesi.</p>
+      </a>
+      <a class="blog-card" href="/blog">
+        <div class="thumb t2">ENTEGRASYON</div>
+        <div class="meta">05 NİSAN 2026 · 5 DK OKUMA</div>
+        <h4>Paraşüt + Telegram = günde 1 saat tasarruf</h4>
+        <p>Pilot müşterilerden gerçek zaman ölçümleri, ONAYLIYORUM akışı ve patron kullanım alışkanlıkları.</p>
+      </a>
+      <a class="blog-card" href="/blog">
+        <div class="thumb t3">KVKK</div>
+        <div class="meta">28 MART 2026 · 9 DK OKUMA</div>
+        <h4>KVKK uyumlu yapay zeka nasıl kurulur?</h4>
+        <p>Veri ikameti, retention, anonimleştirme ve VERBİS bildirimi — pratik bir mimari rehber.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-compact">
+  <div class="shell">
+    <div class="newsletter">
+      <div>
+        <h3>KOBİ + AI üzerine ayda bir mektup.</h3>
+        <p>Ürün notları, edge-compute deneyimi, KVKK yorumları. Spam yok, çıkmak tek tık.</p>
+      </div>
+      <div>
+        <form id="newsletter-form" action="/api/subscribe" method="POST">
+          <input type="email" name="email" placeholder="siz@sirketiniz.com.tr" required />
+          <button class="btn btn-accent" type="submit">Abone ol</button>
+        </form>
+        <div class="kvkk-check">
+          <input type="checkbox" name="kvkk" style="margin-top:2px" checked required />
+          <span>E-posta adresimin abonelik amacıyla işlenmesine <a href="/politika/aydinlatma">KVKK aydınlatma metni</a> çerçevesinde rızam vardır.</span>
+        </div>
+        <div id="newsletter-status" style="margin-top:10px;font-size:12px;color:#bdd0ff;min-height:16px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('newsletter-form');
+    const status = document.getElementById('newsletter-status');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Gönderiliyor…';
+      const data = new FormData(form);
+      try {
+        const r = await fetch('/api/subscribe', { method: 'POST', body: data });
+        const j = await r.json();
+        status.textContent = r.ok ? (j.message || 'Teşekkürler, onay e-postası yolda.') : (j.message || 'Bir hata oluştu.');
+        if (r.ok) form.reset();
+      } catch (_) {
+        status.textContent = 'Bağlantı hatası. Tekrar deneyin.';
+      }
+    });
+  })();
+</script>
+
+</Base>

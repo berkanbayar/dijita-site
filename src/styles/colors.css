@@ -1,0 +1,240 @@
+/* =========================================================================
+   DijitA Design System — Colors & Type
+   Marka: DijitA · Ürün: DijitAs · Tagline: "KOBİ'ler için yapay zekâ operasyon asistanı."
+   Referans estetik: Linear, Stripe docs, Vercel — sakin, kurumsal, teknik ciddiyet.
+   ========================================================================= */
+
+/* ——— Webfonts (Google Fonts fallback: Inter for body, Inter Display-like weights) ——— */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* =====================================================================
+     COLOR — Brand (logodan örneklendi)
+     İki-ton: Cyan swoosh (#00A0FF) + Navy wordmark (#002058).
+     Ölçek bu iki çıpa üzerinden oklch ile türetildi.
+     ===================================================================== */
+  /* Cyan — swoosh / accent / interactive */
+  --dj-cyan-50:  #e6f5ff;
+  --dj-cyan-100: #cceaff;
+  --dj-cyan-200: #99d4ff;
+  --dj-cyan-300: #5cbcff;
+  --dj-cyan-400: #29adff;
+  --dj-cyan-500: #00a0ff;   /* LOGO SWOOSH — primary accent */
+  --dj-cyan-600: #0088db;
+  --dj-cyan-700: #006fb3;
+  --dj-cyan-800: #00578a;
+  --dj-cyan-900: #003f66;
+
+  /* Navy — wordmark / primary action / dark surfaces */
+  --dj-navy-50:  #e6ecf5;
+  --dj-navy-100: #c2cde0;
+  --dj-navy-200: #8a9ac1;
+  --dj-navy-300: #556aa0;
+  --dj-navy-400: #2f4880;
+  --dj-navy-500: #1a3168;
+  --dj-navy-600: #0f2354;
+  --dj-navy-700: #071a45;
+  --dj-navy-800: #04123a;
+  --dj-navy-900: #002058;   /* LOGO WORDMARK — primary action */
+  --dj-navy-950: #001638;
+
+  /* Backwards-compat: --dj-blue-* map to navy so old preview cards still work */
+  --dj-blue-50:  var(--dj-navy-50);
+  --dj-blue-100: var(--dj-navy-100);
+  --dj-blue-200: var(--dj-navy-200);
+  --dj-blue-300: var(--dj-navy-300);
+  --dj-blue-400: var(--dj-navy-400);
+  --dj-blue-500: var(--dj-cyan-500);
+  --dj-blue-600: var(--dj-navy-900);
+  --dj-blue-700: var(--dj-navy-950);
+  --dj-blue-800: var(--dj-navy-800);
+  --dj-blue-900: var(--dj-navy-900);
+  --dj-blue-950: #001030;
+
+  /* Neutrals — Linear/Vercel benzeri cool-grey, hafif mavi ton */
+  --dj-neutral-0:   #ffffff;
+  --dj-neutral-25:  #fbfcfd;
+  --dj-neutral-50:  #f6f8fa;
+  --dj-neutral-100: #eef1f5;
+  --dj-neutral-200: #e3e8ef;
+  --dj-neutral-300: #cdd5df;
+  --dj-neutral-400: #9aa5b4;
+  --dj-neutral-500: #6b7584;
+  --dj-neutral-600: #4a5361;
+  --dj-neutral-700: #343c49;
+  --dj-neutral-800: #1f252f;
+  --dj-neutral-900: #121720;
+  --dj-neutral-950: #0a0d13;
+
+  /* Semantic */
+  --dj-success-50:  #ecfdf5;
+  --dj-success-500: #10b981;
+  --dj-success-700: #047857;
+
+  --dj-warning-50:  #fffbeb;
+  --dj-warning-500: #f59e0b;
+  --dj-warning-700: #b45309;
+
+  --dj-danger-50:   #fef2f2;
+  --dj-danger-500:  #ef4444;
+  --dj-danger-700:  #b91c1c;
+
+  /* KVKK trust accent — kurumsal yeşil (Paraşüt/resmi evrak çağrışımı) */
+  --dj-trust-50:  #effdf4;
+  --dj-trust-500: #0e9f6e;
+  --dj-trust-700: #046c4e;
+
+  /* ===== Semantic surface / text tokens ===== */
+  --fg-1: var(--dj-neutral-900);   /* Başlıklar */
+  --fg-2: var(--dj-neutral-700);   /* Body */
+  --fg-3: var(--dj-neutral-500);   /* Muted, meta, captions */
+  --fg-4: var(--dj-neutral-400);   /* Placeholder */
+  --fg-inverse: var(--dj-neutral-0);
+  --fg-accent: var(--dj-blue-600);
+  --fg-link: var(--dj-blue-600);
+
+  --bg-1: var(--dj-neutral-0);     /* Page */
+  --bg-2: var(--dj-neutral-25);    /* Subtle surface */
+  --bg-3: var(--dj-neutral-50);    /* Card bg (subdued) */
+  --bg-4: var(--dj-neutral-100);   /* Hover / stripe */
+  --bg-elevated: var(--dj-neutral-0);
+  --bg-code: var(--dj-neutral-900);
+
+  --border-1: var(--dj-neutral-200);   /* Default hairline */
+  --border-2: var(--dj-neutral-300);   /* Stronger */
+  --border-accent: var(--dj-blue-500);
+
+  /* =====================================================================
+     TYPOGRAPHY
+     Sans-serif modern, Inter (logo ile uyumlu, geometrik-humanist karışım).
+     Monospace: JetBrains Mono — kod, tablolar, KVKK evrak numarası.
+     ===================================================================== */
+  --font-sans: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Inter', ui-sans-serif, -apple-system, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Type scale — compact, kurumsal. -0.01em to -0.03em tracking for display. */
+  --fs-display-xl: 72px;  --lh-display-xl: 1.02;  --ls-display-xl: -0.035em;
+  --fs-display-l:  56px;  --lh-display-l:  1.05;  --ls-display-l:  -0.03em;
+  --fs-display-m:  44px;  --lh-display-m:  1.08;  --ls-display-m:  -0.025em;
+  --fs-h1:         36px;  --lh-h1:         1.15;  --ls-h1:         -0.02em;
+  --fs-h2:         28px;  --lh-h2:         1.2;   --ls-h2:         -0.018em;
+  --fs-h3:         22px;  --lh-h3:         1.3;   --ls-h3:         -0.014em;
+  --fs-h4:         18px;  --lh-h4:         1.4;   --ls-h4:         -0.01em;
+  --fs-body-l:     17px;  --lh-body-l:     1.6;
+  --fs-body:       15px;  --lh-body:       1.6;
+  --fs-body-s:     14px;  --lh-body-s:     1.55;
+  --fs-caption:    13px;  --lh-caption:    1.5;
+  --fs-micro:      12px;  --lh-micro:      1.45;
+
+  /* =====================================================================
+     SPACING — 4pt base (Linear/Vercel konvansiyonu)
+     ===================================================================== */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* =====================================================================
+     RADII — "Yuvarlak olmayan köşeler" (brief): 4–8px default, 12px max.
+     ===================================================================== */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-pill: 999px;
+
+  /* =====================================================================
+     SHADOWS — sakin, ince. Hiç agresif drop shadow yok.
+     ===================================================================== */
+  --shadow-xs: 0 1px 2px rgba(15, 24, 69, 0.04);
+  --shadow-sm: 0 1px 2px rgba(15, 24, 69, 0.05), 0 1px 1px rgba(15, 24, 69, 0.03);
+  --shadow-md: 0 4px 12px rgba(15, 24, 69, 0.06), 0 1px 2px rgba(15, 24, 69, 0.04);
+  --shadow-lg: 0 12px 32px rgba(15, 24, 69, 0.08), 0 2px 6px rgba(15, 24, 69, 0.04);
+  --shadow-focus: 0 0 0 3px rgba(58, 99, 239, 0.22);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* =====================================================================
+     MOTION — sakin, fonksiyonel. Bounce yok.
+     ===================================================================== */
+  --ease-standard: cubic-bezier(0.2, 0.0, 0.0, 1.0);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-instant: 80ms;
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+  --dur-slow: 360ms;
+
+  /* Gradients — abartısız, mavi + nötr */
+  --grad-hero: linear-gradient(180deg, #f6f8fa 0%, #eef4ff 100%);
+  --grad-blue-subtle: linear-gradient(135deg, #eef4ff 0%, #dbe6ff 100%);
+  --grad-deep: linear-gradient(135deg, var(--dj-blue-900) 0%, var(--dj-blue-950) 100%);
+}
+
+/* =========================================================================
+   SEMANTIC ELEMENT STYLES
+   ========================================================================= */
+html, body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+  background: var(--bg-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+h1, .h1 { font-family: var(--font-display); font-size: var(--fs-h1); line-height: var(--lh-h1); letter-spacing: var(--ls-h1); font-weight: var(--fw-bold); color: var(--fg-1); }
+h2, .h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: var(--ls-h2); font-weight: var(--fw-bold); color: var(--fg-1); }
+h3, .h3 { font-family: var(--font-display); font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: var(--ls-h3); font-weight: var(--fw-semibold); color: var(--fg-1); }
+h4, .h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); letter-spacing: var(--ls-h4); font-weight: var(--fw-semibold); color: var(--fg-1); }
+
+.display-xl { font-family: var(--font-display); font-size: var(--fs-display-xl); line-height: var(--lh-display-xl); letter-spacing: var(--ls-display-xl); font-weight: var(--fw-extrabold); color: var(--fg-1); }
+.display-l  { font-family: var(--font-display); font-size: var(--fs-display-l);  line-height: var(--lh-display-l);  letter-spacing: var(--ls-display-l);  font-weight: var(--fw-bold); color: var(--fg-1); }
+.display-m  { font-family: var(--font-display); font-size: var(--fs-display-m);  line-height: var(--lh-display-m);  letter-spacing: var(--ls-display-m);  font-weight: var(--fw-bold); color: var(--fg-1); }
+
+p, .body { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--fg-2); }
+.body-l { font-size: var(--fs-body-l); line-height: var(--lh-body-l); color: var(--fg-2); }
+.body-s { font-size: var(--fs-body-s); line-height: var(--lh-body-s); color: var(--fg-2); }
+.caption { font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--fg-3); }
+.micro { font-size: var(--fs-micro); line-height: var(--lh-micro); color: var(--fg-3); letter-spacing: 0.02em; }
+.eyebrow { font-size: var(--fs-micro); line-height: 1; color: var(--fg-accent); text-transform: uppercase; letter-spacing: 0.12em; font-weight: var(--fw-semibold); }
+
+code, kbd, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-variant-ligatures: none;
+}
+code {
+  padding: 1px 5px;
+  background: var(--bg-4);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-xs);
+  color: var(--fg-1);
+}
+
+a { color: var(--fg-link); text-decoration: none; transition: color var(--dur-fast) var(--ease-standard); }
+a:hover { color: var(--dj-blue-700); }
+
+::selection { background: var(--dj-blue-200); color: var(--dj-blue-950); }
+
+/* v2 */

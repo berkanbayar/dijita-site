@@ -1,0 +1,114 @@
+---
+import '../styles/colors.css';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  activeNav?: 'urun' | 'skills' | 'fiyat' | 'case-studies' | 'blog' | 'kvkk' | 'hakkimizda' | 'iletisim' | null;
+  pageClass?: string;
+}
+
+const {
+  title,
+  description = "DijitAs — KOBİ'ler için yapay zekâ operasyon asistanı. Ofis cihazında çalışır, veri Türkiye'de kalır.",
+  activeNav = null,
+  pageClass = ''
+} = Astro.props;
+
+const navItems: { href: string; label: string; key: NonNullable<Props['activeNav']> }[] = [
+  { href: '/urun', label: 'Ürün', key: 'urun' },
+  { href: '/skills', label: "Skill'ler", key: 'skills' },
+  { href: '/fiyat', label: 'Fiyat', key: 'fiyat' },
+  { href: '/case-studies', label: 'Vakalar', key: 'case-studies' },
+  { href: '/blog', label: 'Blog', key: 'blog' },
+  { href: '/kvkk-guvenlik', label: 'KVKK & Güvenlik', key: 'kvkk' },
+  { href: '/hakkimizda', label: 'Hakkımızda', key: 'hakkimizda' }
+];
+---
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/logo.png" />
+  <title>{title}</title>
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="DijitAs" />
+  <meta name="theme-color" content="#002058" />
+  <script src="https://unpkg.com/lucide@latest" is:inline></script>
+</head>
+<body class={pageClass}>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/"><img src="/logo.png" alt="DijitA" /></a>
+    <div class="nav-links">
+      {navItems.map(({ href, label, key }) => (
+        <a href={href} class={activeNav === key ? 'active' : ''}>{label}</a>
+      ))}
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="/iletisim">İletişim</a>
+      <a class="btn btn-primary btn-sm" href="/iletisim">Demo talep et</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <slot />
+</main>
+
+<footer class="site-foot">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <div class="foot-logo"><img src="/logo.png" alt="DijitA" /></div>
+        <p class="foot-note">DijitAs · KOBİ'ler için yapay zekâ operasyon asistanı. Ofis cihazında çalışır, veri Türkiye'de kalır.</p>
+      </div>
+      <div>
+        <h5>Ürün</h5>
+        <a href="/urun">Nasıl çalışır</a>
+        <a href="/skills">Skill'ler</a>
+        <a href="/fiyat">Fiyat</a>
+        <a href="/iletisim">Demo talep et</a>
+      </div>
+      <div>
+        <h5>Güven</h5>
+        <a href="/kvkk-guvenlik">KVKK &amp; Güvenlik</a>
+        <a href="/politika/aydinlatma">Aydınlatma metni</a>
+        <a href="/politika/cerez">Çerez politikası</a>
+        <a href="/politika/kullanim">Kullanım koşulları</a>
+      </div>
+      <div>
+        <h5>Şirket</h5>
+        <a href="/hakkimizda">Hakkımızda</a>
+        <a href="/case-studies">Vakalar</a>
+        <a href="/blog">Blog</a>
+        <a href="/iletisim">İletişim</a>
+      </div>
+      <div>
+        <h5>İletişim</h5>
+        <a href="mailto:iletisim@dijitapro.com.tr">iletisim@dijitapro.com.tr</a>
+        <a href="#">+90 216 000 00 00</a>
+        <a href="#">İstanbul, Türkiye</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 DijitA Yazılım A.Ş. · dijitapro.com.tr</div>
+      <div>v0.1.0 · built in Istanbul</div>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  if (window.lucide) window.lucide.createIcons();
+</script>
+
+</body>
+</html>

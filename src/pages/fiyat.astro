@@ -1,0 +1,156 @@
+---
+import Base from '../layouts/Base.astro';
+const check = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`;
+const x = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+---
+<Base title="Fiyat · DijitAs" activeNav="fiyat" description="DijitAs fiyatlandırma: şeffaf abonelik + donanım + per-diem geliştirme. Saklı gider yok.">
+
+<style>
+  .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .plan { background: #fff; border: 1px solid var(--border-1); border-radius: 10px; padding: 36px 32px; position: relative; display: flex; flex-direction: column; }
+  .plan.featured { border-color: var(--dj-cyan-500); box-shadow: 0 0 0 1px var(--dj-cyan-500), 0 24px 48px -24px rgba(0,160,255,0.3); }
+  .plan .tag { position:absolute; top:-10px; left:24px; background:var(--dj-cyan-500); color:#002058; font:700 11px var(--font-mono); padding:4px 10px; border-radius:4px; letter-spacing:0.08em; text-transform:uppercase; }
+  .plan h3 { font:600 16px var(--font-sans); color:var(--fg-1); margin-bottom:6px; }
+  .plan .desc { font-size:13px; color:var(--fg-3); margin-bottom:28px; }
+  .plan .price { font:700 44px var(--font-display); color:var(--dj-navy-900); letter-spacing:-0.028em; margin-bottom:4px; line-height:1; }
+  .plan .price small { font:500 15px var(--font-sans); color:var(--fg-3); margin-left:4px; }
+  .plan .period { font-size:12.5px; color:var(--fg-3); font-family:var(--font-mono); }
+  .plan ul { list-style:none; margin:28px 0; padding:0; display:flex; flex-direction:column; gap:11px; flex: 1; }
+  .plan li { display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--fg-2); line-height:1.5; }
+  .plan li svg { width:16px; height:16px; color:var(--dj-trust-500); flex-shrink:0; margin-top:3px; }
+  .plan li.muted { color: var(--fg-4); }
+  .plan li.muted svg { color: var(--fg-4); }
+  .extras { background: var(--dj-navy-900); color:#fff; border-radius: 12px; padding: 40px; margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .extras h3 { font:700 22px var(--font-display); letter-spacing:-0.02em; margin-bottom:10px; }
+  .extras p { color:#bdd0ff; font-size:14.5px; line-height:1.6; }
+  .extras .prices { display:flex; flex-direction:column; gap: 16px; }
+  .extra-row { display:grid; grid-template-columns:1fr auto; gap:16px; padding: 14px 0; border-bottom: 1px solid rgba(143,176,255,0.2); }
+  .extra-row:last-child { border-bottom: none; }
+  .extra-row .k { font-size:14px; color:#fff; }
+  .extra-row .k small { display:block; font:500 12px var(--font-mono); color:#8fb0ff; margin-top:2px; }
+  .extra-row .v { font:600 18px var(--font-display); color: var(--dj-cyan-400); letter-spacing:-0.01em; }
+  .tco { background:#fff; border:1px solid var(--border-1); border-radius:10px; overflow:hidden; }
+  .tco table { width:100%; border-collapse:collapse; }
+  .tco th, .tco td { padding: 14px 20px; text-align:left; border-bottom: 1px solid var(--border-1); font-size: 14px; }
+  .tco th { background: var(--bg-3); font: 600 11px var(--font-mono); color:var(--fg-3); letter-spacing:0.06em; text-transform:uppercase; }
+  .tco .num { font-family: var(--font-mono); text-align:right; }
+  .tco tr:last-child td { border-bottom: none; }
+  .tco tr.total td { background: var(--bg-3); font-weight: 700; color: var(--dj-navy-900); }
+  .faq { display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: #fff; border: 1px solid var(--border-1); border-radius: 8px; padding: 20px 24px; }
+  .faq-item h4 { font: 600 16px var(--font-sans); color: var(--fg-1); margin-bottom: 8px; letter-spacing:-0.01em; }
+  .faq-item p { font-size: 14.5px; line-height: 1.6; color: var(--fg-2); }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="eyebrow">FİYAT</span>
+    <h1>Şeffaf fiyat. Saklı gider yok.</h1>
+    <p>Sabit aylık abonelik + tek seferlik donanım + ihtiyaca göre per-diem özel geliştirme. Taahhüt 12 ay. Tüm tutarlar KDV hariç.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="pricing">
+      <div class="plan">
+        <h3>Başlangıç</h3>
+        <div class="desc">1–10 kişi · tek şirket · 3 skill</div>
+        <div class="price">₺12.000<small>/ay</small></div>
+        <div class="period">yıllık · aylık fatura</div>
+        <ul>
+          <li><Fragment set:html={check} />Paraşüt entegrasyonu</li>
+          <li><Fragment set:html={check} />Telegram müşteri botu (WhatsApp Faz 2)</li>
+          <li><Fragment set:html={check} />Gelen/giden fatura + bakiye</li>
+          <li><Fragment set:html={check} />Günlük brifing + görüşme özeti</li>
+          <li><Fragment set:html={check} />7 yıllık onay log saklama</li>
+          <li class="muted"><Fragment set:html={x} />Özel skill geliştirme</li>
+          <li class="muted"><Fragment set:html={x} />Çoklu şirket / çoklu lokasyon</li>
+        </ul>
+        <a class="btn btn-secondary" href="/iletisim" style="justify-content:center">Demo talep et</a>
+      </div>
+
+      <div class="plan featured">
+        <span class="tag">Önerilen</span>
+        <h3>Operasyon</h3>
+        <div class="desc">10–50 kişi · 15 skill · özel entegrasyon</div>
+        <div class="price">₺15.000<small>/ay</small></div>
+        <div class="period">yıllık · aylık fatura</div>
+        <ul>
+          <li><Fragment set:html={check} />Başlangıç paketinin tamamı</li>
+          <li><Fragment set:html={check} />15 skill · üretim + sipariş + stok</li>
+          <li><Fragment set:html={check} />Telegram admin bot + ops alert</li>
+          <li><Fragment set:html={check} />Ayda 2 gün per-diem geliştirme</li>
+          <li><Fragment set:html={check} />Çalışan grup havuzu (5 kişi)</li>
+          <li><Fragment set:html={check} />Öncelikli destek · 4 saat SLA</li>
+          <li><Fragment set:html={check} />Mali müşavir erişim hesabı</li>
+        </ul>
+        <a class="btn btn-primary" href="/iletisim" style="justify-content:center">Demo talep et</a>
+      </div>
+
+      <div class="plan">
+        <h3>Kurumsal</h3>
+        <div class="desc">50+ kişi · çok şirket · SLA</div>
+        <div class="price">Görüşelim</div>
+        <div class="period">özel teklif</div>
+        <ul>
+          <li><Fragment set:html={check} />Operasyon paketinin tamamı</li>
+          <li><Fragment set:html={check} />Çoklu şirket / çoklu lokasyon</li>
+          <li><Fragment set:html={check} />Özel skill katalog + custom eğitim</li>
+          <li><Fragment set:html={check} />Yedekli cihaz (HA)</li>
+          <li><Fragment set:html={check} />7/24 teknik destek · 1 saat SLA</li>
+          <li><Fragment set:html={check} />KVKK/ISO danışmanlık</li>
+        </ul>
+        <a class="btn btn-secondary" href="/iletisim" style="justify-content:center">İletişime geçin</a>
+      </div>
+    </div>
+
+    <div class="extras">
+      <div>
+        <span class="badge badge-cyan" style="background:rgba(0,160,255,0.15);color:var(--dj-cyan-400);border-color:rgba(0,160,255,0.3)">TEK SEFERLİK + PER-DIEM</span>
+        <h3 style="margin-top:14px">Donanım + özel geliştirme.</h3>
+        <p>Abonelik fiyatına ofis cihazı dahil değildir — kurulum ve 1 yıl destek bedeline fatura edilir. Özel skill geliştirme per-diem çalışır.</p>
+      </div>
+      <div class="prices">
+        <div class="extra-row"><div class="k">Ofis cihazı + kurulum<small>Intel N100 · 16GB · 512GB NVMe · LUKS · 1 yıl destek</small></div><div class="v">₺28.000</div></div>
+        <div class="extra-row"><div class="k">Per-diem geliştirme<small>özel skill · entegrasyon · raporlama</small></div><div class="v">₺8.500 / gün</div></div>
+        <div class="extra-row"><div class="k">Yedekli cihaz (HA)<small>ikinci cihaz · failover · aylık simülasyon</small></div><div class="v">+₺4.500/ay</div></div>
+        <div class="extra-row"><div class="k">Eğitim / on-site<small>yarım gün · ofise gelme</small></div><div class="v">₺6.000</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:72px">
+      <span class="eyebrow">ÖRNEK TOPLAM MALİYET</span>
+      <h2 class="section-title" style="margin: 16px 0 8px">Bir 25 kişilik KOBİ · 12 ay.</h2>
+      <p class="lede" style="margin-bottom:28px">Operasyon paketi, ayda 2 gün per-diem dahil, sıfırdan kurulum. KDV hariç.</p>
+      <div class="tco">
+        <table>
+          <thead><tr><th>Kalem</th><th class="num">Birim</th><th class="num">Adet</th><th class="num">Toplam (₺)</th></tr></thead>
+          <tbody>
+            <tr><td>Aylık abonelik · Operasyon</td><td class="num">15.000</td><td class="num">12</td><td class="num">180.000</td></tr>
+            <tr><td>Ofis cihazı + kurulum · tek seferlik</td><td class="num">28.000</td><td class="num">1</td><td class="num">28.000</td></tr>
+            <tr><td>Dahil per-diem · 2 gün × 12 ay</td><td class="num">dahil</td><td class="num">24 gün</td><td class="num">0</td></tr>
+            <tr><td>Ek per-diem · özel skill (örnek)</td><td class="num">8.500</td><td class="num">4 gün</td><td class="num">34.000</td></tr>
+            <tr class="total"><td>1. yıl toplam</td><td class="num"></td><td class="num"></td><td class="num">242.000</td></tr>
+            <tr class="total"><td>2. yıl ve sonrası (donanım hariç)</td><td class="num"></td><td class="num"></td><td class="num">180.000 + per-diem</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:13px;color:var(--fg-3);margin-top:12px;font-family:var(--font-mono)">Bir tam zamanlı junior ofis personelinin 12 aylık işveren maliyeti ≈ ₺540.000. ROI ≈ 2,2x ilk yıl.</p>
+    </div>
+
+    <div style="margin-top:72px">
+      <span class="eyebrow">SIK SORULAR</span>
+      <h2 class="section-title" style="margin: 16px 0 28px">Fiyat üstüne.</h2>
+      <div class="faq">
+        <div class="faq-item"><h4>Taahhüt ne kadar? Erken iptal?</h4><p>Taahhüt 12 ay. 6. aydan sonra 30 gün önceden yazılı bildirimle çıkabilirsiniz; donanım iade edilir, kalan abonelik faturalanmaz. İlk 6 ay erken çıkış = kalan ayların %50'si.</p></div>
+        <div class="faq-item"><h4>Paraşüt aboneliği fiyata dahil mi?</h4><p>Hayır. Paraşüt aboneliğinizi kendiniz sürdürürsünüz. DijitAs, Paraşüt'ün API'sini kullanır; ek bir Paraşüt lisansı gerektirmez.</p></div>
+        <div class="faq-item"><h4>LLM çağrı maliyetleri kimde?</h4><p>Bizde. Claude/Gemini API maliyetleri abonelik fiyatına dahildir. Anormal kullanım (spam, fuzzing) durumunda adil kullanım limiti uygulanır.</p></div>
+        <div class="faq-item"><h4>Per-diem geliştirme nasıl işler?</h4><p>İsteği açarsınız, scope'u yazılı onaylarız, gün sayısı belirleriz. Tamamlandığında kabul testi yapılır, onayınızla fatura kesilir. Operasyon paketinde ayda 2 gün zaten dahildir.</p></div>
+        <div class="faq-item"><h4>KDV oranı?</h4><p>Yazılım hizmeti standart %20 KDV. Tüm tutarlar yukarıda KDV hariç gösterilmiştir.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</Base>

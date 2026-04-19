@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="KVKK & Güvenlik · DijitAs" activeNav="kvkk" description="DijitAs KVKK ve güvenlik raporu: veri akışı, retention, üçüncü partiler, sorumluluk matrisi.">
+
+<style>
+  .kvkk-layout { display: grid; grid-template-columns: 240px 1fr; gap: 56px; align-items: start; }
+  .promise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 16px 0 8px; }
+  .promise { background: #fff; border: 1px solid var(--border-1); border-radius: 8px; padding: 20px; }
+  .promise .ico { width: 32px; height: 32px; border-radius: 6px; background: var(--dj-trust-50); color: var(--dj-trust-700); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+  .promise h4 { font: 600 15px var(--font-sans); color: var(--fg-1); margin-bottom: 6px; letter-spacing: -0.01em; }
+  .promise p { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; }
+  .data-table { width:100%; border-collapse:collapse; border:1px solid var(--border-1); border-radius: 8px; overflow: hidden; background:#fff; }
+  .data-table th, .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border-1); text-align:left; font-size: 13.5px; vertical-align: top; }
+  .data-table th { background: var(--bg-3); font: 600 11px var(--font-mono); color: var(--fg-3); letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table code { font: 500 12px var(--font-mono); background: var(--bg-3); padding: 1px 5px; border-radius: 3px; color: var(--fg-1); }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="badge badge-green" style="margin-bottom:18px"><i data-lucide="shield-check" style="width:11px;height:11px"></i>KVKK &amp; GÜVENLİK</span>
+    <h1>Türk KOBİ için güven kapısı.</h1>
+    <p>Asistan ofiste çalışır, disk LUKS ile şifrelidir, Tailscale tüneli dışında hiçbir uzak bağlantı kabul etmez. Aşağıda veri akışı, retention, üçüncü partiler ve KVKK sorumluluk matrisi.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell kvkk-layout">
+    <nav class="toc">
+      <h5>BU SAYFADA</h5>
+      <a class="active" href="#vaatler">Güven vaatleri</a>
+      <a href="#veri-akisi">Veri akışı</a>
+      <a href="#kategoriler">Veri kategorileri</a>
+      <a href="#saklama">Retention</a>
+      <a href="#ucuncu-parti">3. partiler</a>
+      <a href="#sorumluluk">Sorumluluk matrisi</a>
+      <a href="#haklar">Kullanıcı hakları</a>
+    </nav>
+
+    <div class="prose">
+
+      <h2 id="vaatler" style="margin-top:0">Güven vaatleri</h2>
+      <p>Beş taahhüt veriyoruz. Bunların hiçbiri pazarlama değildir — her biri mimari, kontrat veya log kaydıyla kanıtlanabilir.</p>
+      <div class="promise-grid">
+        <div class="promise"><div class="ico"><i data-lucide="map-pin" style="width:16px;height:16px"></i></div><h4>Kurumsal veri yurt içinde kalır</h4><p>Paraşüt kayıtları, cari, fatura, tahsilat verisi ofis cihazınızda ve yurt içi Hetzner İstanbul yedeğinde kalır. LLM'e giden içerik anonimleştirilir; Telegram Bot API altyapısı mesajlaşma için kullanılır (Faz 2'de WhatsApp opsiyonu). 3. parti akışları aşağıdaki tabloda.</p></div>
+        <div class="promise"><div class="ico"><i data-lucide="lock" style="width:16px;height:16px"></i></div><h4>Disk şifreli</h4><p>LUKS AES-256-XTS. Cihaz çalınsa veya haczedilse bile parola olmadan veri okunamaz. Anahtar ofiste sizde.</p></div>
+        <div class="promise"><div class="ico"><i data-lucide="user-check" style="width:16px;height:16px"></i></div><h4>Onaysız yazma aksiyon yok</h4><p>Her fatura, tahsilat, sipariş için ONAYLIYORUM teyidi zorunlu. Guard ID ile 7 yıl saklanır.</p></div>
+        <div class="promise"><div class="ico"><i data-lucide="eye-off" style="width:16px;height:16px"></i></div><h4>LLM'e anonim veri</h4><p>Claude/Gemini'ye cari ismi, tutar, belge ID'si gitmez — sadece intent + anonimleştirilmiş sablon.</p></div>
+        <div class="promise"><div class="ico"><i data-lucide="file-text" style="width:16px;height:16px"></i></div><h4>Denetim kaydı</h4><p>Her aksiyon, her onay, her iptal append-only log'a yazılır. Ops Console'dan dışa aktarılabilir.</p></div>
+        <div class="promise"><div class="ico"><i data-lucide="ban" style="width:16px;height:16px"></i></div><h4>Eğitim amaçlı veri kullanımı yok</h4><p>Müşteri verisiyle model eğitmeyiz, eğitim ortağı olarak da paylaşmayız. LLM sağlayıcılarla bu şart sözleşmeyle güvence altındadır.</p></div>
+      </div>
+
+      <h2 id="veri-akisi">Veri akışı · uçtan uca</h2>
+      <p>Mesaj geldiğinden Paraşüt'e kayıt yazılana kadar veri şu yoldan geçer:</p>
+      <ol>
+        <li>Telegram Bot API → <b>ofis cihazı</b> webhook (giriş noktası TLS, dışarıdan port açık değil)</li>
+        <li>Intent sınıflandırma → <b>yerel küçük model</b></li>
+        <li>Anonim prompt → <b>Claude/Gemini</b> (yalnızca sablon metin)</li>
+        <li>LLM cevabı → <b>yerel çözümleyici</b> (cari, ürün, vade Paraşüt'ten)</li>
+        <li>Taslak → kullanıcıya Telegram üzerinden sunulur</li>
+        <li>Kullanıcı <b>ONAYLIYORUM</b> → guard log yazılır</li>
+        <li>Yerel Paraşüt proxy → <b>Paraşüt V4 API</b> (TLS, OAuth2)</li>
+        <li>Sonuç → kullanıcıya Telegram, append-only onay_log'a</li>
+      </ol>
+      <p><small>Faz 2 WhatsApp opsiyonu aktivasyonunda aynı akış Meta WhatsApp Business API üzerinden gerçekleşir; kanal farkı intent motoruna bildirilir.</small></p>
+
+      <h2 id="kategoriler">Veri kategorileri</h2>
+      <table class="data-table">
+        <thead><tr><th>Veri</th><th>Tür</th><th>Nerede durur</th><th>Saklama</th></tr></thead>
+        <tbody>
+          <tr><td>Kullanıcı mesajı (Telegram / Faz 2 WhatsApp)</td><td>Kişisel</td><td>Ofis cihazı (LUKS)</td><td>90 gün</td></tr>
+          <tr><td>Cari/fatura/tahsilat metadata</td><td>Şirket</td><td>Paraşüt + yerel önbellek</td><td>Paraşüt saklama kuralı</td></tr>
+          <tr><td>Onay kaydı (<code>onay_log</code>)</td><td>Hukuki belge</td><td>Ofis + yurt içi yedek</td><td>7 yıl (VUK)</td></tr>
+          <tr><td>İşlem logu (<code>audit_log</code>)</td><td>Sistemsel</td><td>Ofis cihazı</td><td>90 gün, sonra agregat</td></tr>
+          <tr><td>Sesli not transkriptleri</td><td>Kişisel</td><td>Ofis cihazı</td><td>30 gün · istek üzerine silinir</td></tr>
+          <tr><td>LLM anonim prompt</td><td>Anonim</td><td>Claude/Gemini (geçici)</td><td>Sağlayıcı politikası · eğitim yok</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="saklama">Retention politikası</h2>
+      <p>Türk Ticaret Kanunu ve Vergi Usul Kanunu <b>7 yıllık muhasebe belge saklama</b> yükümlülüğü getirir. Onay kayıtları bu kapsamdadır. Diğer veriler operasyonel amaçla 30–90 gün tutulur; süre dolunca otomatik silinir.</p>
+      <blockquote>Müşteri talebi üzerine (KVKK silinme hakkı) belirli kayıtları daha erken silebiliriz; ancak muhasebe onay kayıtları için yasal yükümlülük kısıtlar.</blockquote>
+
+      <h2 id="ucuncu-parti">Üçüncü partiler</h2>
+      <table class="data-table">
+        <thead><tr><th>Servis</th><th>Amaç</th><th>Lokasyon</th><th>Veri</th></tr></thead>
+        <tbody>
+          <tr><td><b>Paraşüt</b></td><td>Muhasebe API</td><td>Türkiye</td><td>Cari, fatura, tahsilat (OAuth2)</td></tr>
+          <tr><td><b>Anthropic · Claude</b></td><td>LLM (intent + yanıt)</td><td>EU/US</td><td>Anonim intent metni · eğitim yok</td></tr>
+          <tr><td><b>Google · Gemini</b></td><td>LLM fallback</td><td>EU</td><td>Anonim intent metni · eğitim yok</td></tr>
+          <tr><td><b>Telegram Bot API</b></td><td>Mesajlaşma (birincil)</td><td>EU/küresel</td><td>Mesaj metadata · Telegram TOS</td></tr>
+          <tr><td><b>WhatsApp Business API</b> <small>(Faz 2 opsiyonel)</small></td><td>Mesajlaşma</td><td>EU</td><td>Mesaj metadata · Meta DPA</td></tr>
+          <tr><td><b>Resend</b></td><td>Newsletter + form</td><td>EU</td><td>Abonenin e-posta + isim</td></tr>
+          <tr><td><b>Plausible</b></td><td>Analitik (cookie-siz)</td><td>EU</td><td>Agregat trafik verisi</td></tr>
+          <tr><td><b>Hetzner İstanbul</b></td><td>Yedekleme</td><td>Türkiye</td><td>Şifrelenmiş yedek · key sizde</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="sorumluluk">KVKK sorumluluk matrisi</h2>
+      <p>DijitA, Kanun kapsamında <b>Veri İşleyen</b>dir. Müşteri (KOBİ) <b>Veri Sorumlusu</b>dur. Aydınlatma yükümlülüğü, ilgili kişi hakları ve VERBİS bildirimi müşteri tarafında kalır; biz sözleşmeyle ve teknik kontrollerle destek veririz.</p>
+      <ul>
+        <li>Müşteriye <b>örnek aydınlatma metni</b> şablonu veririz</li>
+        <li>Veri sorumlusu &harr; veri işleyen sözleşmesi (<b>DPA</b>) sözleşmenin ekidir</li>
+        <li>Veri ihlali durumunda 72 saat içinde bildirim taahhüdü</li>
+      </ul>
+
+      <h2 id="haklar">Kullanıcı hakları</h2>
+      <p>KVKK Md. 11 kapsamındaki talepler için tek kanal: <code>kvkk@dijitapro.com.tr</code>. Başvuru 30 gün içinde yanıtlanır. Silme, aktarma, düzeltme, itiraz talepleri kapsamdadır.</p>
+
+    </div>
+  </div>
+</section>
+
+</Base>

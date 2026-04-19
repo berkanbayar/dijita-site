@@ -1,0 +1,164 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Ürün · DijitAs" activeNav="urun" description="DijitAs nasıl çalışır: Telegram girişi, ofis cihazı, multi-model intent, ONAYLIYORUM onay katmanı. WhatsApp desteği Faz 2.">
+
+<style>
+  .step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 80px; }
+  .step-grid:last-child { margin-bottom: 0; }
+  .step-grid.rev { direction: rtl; }
+  .step-grid.rev > * { direction: ltr; }
+  .step-num { font: 700 72px var(--font-display); color: var(--dj-cyan-500); line-height: 1; letter-spacing: -0.04em; margin-bottom: 16px; opacity: 0.9; }
+  .step-tag { font: 600 11px var(--font-mono); color: var(--dj-navy-900); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .step h3 { font-family: var(--font-display); font-size: 32px; line-height: 1.1; letter-spacing: -0.025em; color: var(--dj-navy-900); margin-bottom: 14px; font-weight: 700; }
+  .step p { font-size: 16px; color: var(--fg-2); line-height: 1.6; margin-bottom: 16px; }
+  .step ul { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .step ul li { padding-left: 22px; position: relative; font-size: 14.5px; color: var(--fg-2); line-height: 1.5; }
+  .step ul li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--dj-cyan-500); border-radius: 50%; }
+  .mock { background: #fff; border: 1px solid var(--border-1); border-radius: 10px; box-shadow: var(--shadow-lg); padding: 20px; font: 500 12px var(--font-mono); color: var(--fg-2); }
+  .mock .mock-hd { display:flex; gap:6px; padding-bottom: 12px; border-bottom: 1px solid var(--border-1); margin-bottom: 14px; }
+  .mock .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .mock .dot.r { background: #ff5f56; } .mock .dot.y { background: #ffbd2e; } .mock .dot.g { background: #27c93f; }
+  .arch { background: var(--dj-navy-900); color: #fff; border-radius: 14px; padding: 48px; margin-top: 40px; }
+  .arch h3 { font: 700 24px var(--font-display); letter-spacing: -0.02em; margin-bottom: 32px; color: #fff; }
+  .arch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .arch-col { background: rgba(255,255,255,0.04); border: 1px solid rgba(143,176,255,0.2); border-radius: 8px; padding: 20px; }
+  .arch-col .lbl { font: 600 10px var(--font-mono); color: var(--dj-cyan-400); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+  .arch-col h4 { font: 600 14px var(--font-sans); margin-bottom: 8px; color: #fff; }
+  .arch-col ul { list-style: none; display: flex; flex-direction: column; gap: 4px; font: 500 12px var(--font-mono); color: #bdd0ff; }
+  .arch-col li { padding: 2px 0; }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="eyebrow">ÜRÜN</span>
+    <h1>Nasıl çalışır?</h1>
+    <p>DijitAs dört parçadan oluşur: ofisinize kurulan Linux cihazı, Türkçe konuşan intent motoru, Paraşüt entegrasyonu ve "ONAYLIYORUM" onay katmanı. Aşağıda her parçayı, veri akışını ve güvenlik vaatlerini tek tek görürsünüz.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-tag">GİRİŞ KANALI</div>
+        <h3>Telegram müşteri botu + ayrı ops botu.</h3>
+        <p>İki Telegram botu kurulur: (1) müşteri iş akışı için patron + whitelist havuzunun kullandığı müşteri botu, (2) DijitA ekibinin aldığı sistem uyarıları için ayrı ops botu. Kullanıcı iş verisi ops botuna sızmaz. WhatsApp Business API desteği Faz 2 opsiyonu — Meta template onay süreci tamamlanınca aktive olur.</p>
+        <ul>
+          <li>Sesli mesaj desteği — Türkçe transkript (Whisper.cpp)</li>
+          <li>Grup desteği: departman havuzu + bireysel DM</li>
+          <li>İki-kanal onay (Level 2+ işlemler için ikincil bot üzerinden teyit)</li>
+          <li>WhatsApp Faz 2 — en az 2 hat gerektirir (ana ofis + ikincil onay SIM'i)</li>
+        </ul>
+      </div>
+      <div class="mock">
+        <div class="mock-hd"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-3)">telegram · webhook</span></div>
+        <div style="padding: 6px 0; color: var(--fg-3);">POST /api/telegram/inbound</div>
+        <div style="padding: 6px 10px; background: var(--bg-3); border-radius: 4px; margin: 8px 0; border-left: 2px solid var(--dj-cyan-500);">
+          <div style="color: var(--fg-3); font-size: 11px;">from: @ahmetyilmaz · tg:178234</div>
+          <div style="color: var(--fg-1); margin: 4px 0;">"Akın Tekstil'e 42 bin fatura kes"</div>
+          <div style="color: var(--fg-3); font-size: 11px;">ts: 2026-04-19T14:12:33Z</div>
+        </div>
+        <div style="padding: 8px 0; color: var(--dj-trust-500); font-size: 11px;">→ intent: invoice.create · confidence 0.94</div>
+      </div>
+    </div>
+
+    <div class="step-grid rev">
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-tag">OFİS CİHAZI</div>
+        <h3>Ubuntu 24.04 + LUKS şifreli disk.</h3>
+        <p>Sessiz mini-PC. Kurulumda biz geliriz, prizi takarız, KVKK dokümantasyonunu bırakırız. Disk LUKS ile şifrelidir — cihaz çalınsa dahi veri okunamaz.</p>
+        <ul>
+          <li>Intel N100 / 16GB RAM / 512GB NVMe</li>
+          <li>Tailscale tüneli ile bakım erişimi (key-only)</li>
+          <li>Günlük backup — yurt içi ayrı Hetzner İstanbul VM</li>
+          <li>Power-fail proof, UPS önerilir</li>
+        </ul>
+      </div>
+      <div class="mock">
+        <div class="mock-hd"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-3)">dijitas-01 · ssh</span></div>
+        <div style="padding: 3px 0; color: var(--fg-3);">$ systemctl status dijitas</div>
+        <div style="padding: 3px 0; color: var(--dj-trust-500);">● dijitas.service — active (running)</div>
+        <div style="padding: 3px 0; color: var(--fg-3);">  Uptime: 14 days, 03:22</div>
+        <div style="padding: 3px 0; color: var(--fg-3);">  Memory: 1.2G / 16G</div>
+        <div style="padding: 3px 0; color: var(--fg-3);">  LUKS: unlocked, AES-256-XTS</div>
+        <div style="padding: 3px 0; color: var(--fg-3);">  Tailscale: 100.64.0.1</div>
+        <div style="padding: 8px 0; color: var(--dj-cyan-600); font-size: 11px;">→ all health checks green</div>
+      </div>
+    </div>
+
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-tag">INTENT MOTORU</div>
+        <h3>Multi-model routing. Anonim prompt.</h3>
+        <p>Niyet sınıflandırma yerelde (küçük model) yapılır. LLM'e yalnızca anonimleştirilmiş sablon metin gider — cari isimleri, tutarlar, belge ID'leri <b>maskelenir</b>. Maskeleme uygulanmadan hiçbir yapılandırılmış veri yurt dışı LLM sağlayıcısına iletilmez.</p>
+        <ul>
+          <li>Router: Claude Haiku (düşük risk) ↔ Sonnet (karmaşık)</li>
+          <li>Fallback: Gemini Flash</li>
+          <li>Gerçek veri çağrısı yerel Paraşüt proxy'den</li>
+        </ul>
+      </div>
+      <div class="mock">
+        <div class="mock-hd"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-3)">intent · trace</span></div>
+        <div style="padding: 2px 0; color: var(--fg-3);">raw: "Akın Tekstil'e 42 bin fatura kes"</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">→ anonymize:</div>
+        <div style="padding: 2px 0; color: var(--dj-navy-900);">  "[CARI_A]'a [TUTAR] fatura kes"</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">→ claude-haiku: invoice.create</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">→ local resolve:</div>
+        <div style="padding: 2px 0; color: var(--dj-trust-500);">  cari #CR-1044 (Akın Tekstil Tic.)</div>
+        <div style="padding: 2px 0; color: var(--dj-trust-500);">  amount: 42000 TRY</div>
+      </div>
+    </div>
+
+    <div class="step-grid rev">
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-tag">ONAY KATMANI</div>
+        <h3>"ONAYLIYORUM" — dokuz harfli güven duvarı.</h3>
+        <p>Her yazma aksiyonu (fatura kesme, tahsilat, sipariş) zorunlu bir teyit kelimesi ister. Parola yok, tek tık yok — tam olarak bu kelimeyi yazmanız gerekir. Kayıt 7 yıl saklanır.</p>
+        <ul>
+          <li>Her onay bir <code>guard_id</code> üretir</li>
+          <li>Hash'lenmiş onay metni + timestamp + actor</li>
+          <li>Ops Console'dan tüm denetim kaydı görülür</li>
+          <li>Okuma (bakiye, rapor) onay istemez</li>
+        </ul>
+      </div>
+      <div class="mock">
+        <div class="mock-hd"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-3)">onay_log · append-only</span></div>
+        <div style="padding: 2px 0; color: var(--fg-3);">guard_id  : a7f9c2e1b0</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">action    : invoice.create</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">actor     : ahmet.y@akintekstil.tr</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">channel   : telegram</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">payload_h : 8e2c·..·9a1f</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">approval  : "ONAYLIYORUM"</div>
+        <div style="padding: 2px 0; color: var(--fg-3);">ts        : 2026-04-19 14:13:08</div>
+        <div style="padding: 8px 0; color: var(--dj-trust-500); font-size: 11px;">✓ parasut response: FAT-2026/1142</div>
+      </div>
+    </div>
+
+    <div class="arch">
+      <h3>Ürün mimarisi — tüm katmanlar</h3>
+      <div class="arch-grid">
+        <div class="arch-col"><div class="lbl">GİRİŞ</div><h4>Mesajlaşma</h4><ul><li>Telegram müşteri botu</li><li>Telegram ops botu</li><li>Sesli not (STT · Whisper)</li><li>WhatsApp Business — Faz 2</li></ul></div>
+        <div class="arch-col" style="border-color:var(--dj-cyan-500);background:rgba(0,160,255,0.08)"><div class="lbl">OFİS CİHAZI</div><h4>DijitAs core</h4><ul><li>Intent router</li><li>Skill engine</li><li>Guard layer</li><li>Audit log</li></ul></div>
+        <div class="arch-col"><div class="lbl">ANONİM ÇIKIŞ</div><h4>LLM routing</h4><ul><li>Claude Haiku/Sonnet</li><li>Gemini Flash</li><li>Sadece intent + anon</li></ul></div>
+        <div class="arch-col"><div class="lbl">VERİ</div><h4>Entegrasyon</h4><ul><li>Paraşüt V4 API</li><li>Banka export (manuel)</li><li>E-Fatura entegratör</li></ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="shell" style="text-align:center">
+    <h2 class="section-title" style="margin: 0 auto 24px">15 dakikalık demo. Sizin verinizle.</h2>
+    <p class="lede" style="margin: 0 auto 32px">Ekranınızı paylaşın, biz asistanı Paraşüt test hesabınıza bağlayalım. İlk fatura kesme akışını canlı gösterelim.</p>
+    <a class="btn btn-primary btn-lg" href="/iletisim">Demo talep et <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
+  </div>
+</section>
+
+</Base>

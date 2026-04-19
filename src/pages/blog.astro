@@ -1,0 +1,179 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Blog · DijitAs" activeNav="blog" description="DijitA blog — ürün notları, saha yazıları, mimari kararlar, Türk KVKK pratiği.">
+
+<style>
+  .featured { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; background: var(--dj-navy-900); color: #fff; border-radius: 14px; padding: 56px; margin-bottom: 64px; position: relative; overflow: hidden; }
+  .featured::before { content:''; position:absolute; top:-120px; right:-120px; width: 400px; height: 400px; background: radial-gradient(circle, var(--dj-cyan-500) 0%, transparent 65%); opacity: 0.3; }
+  .featured .tag { font: 700 11px var(--font-mono); color: var(--dj-cyan-400); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+  .featured h2 { font: 600 36px/1.15 var(--font-display); letter-spacing: -0.026em; margin-bottom: 14px; }
+  .featured p { font-size: 16px; line-height: 1.55; color: #bdd0ff; margin-bottom: 24px; max-width: 520px; }
+  .featured .meta { font: 500 13px var(--font-mono); color: #8fb0ff; }
+  .featured .ill { position: relative; z-index: 1; }
+  .featured .ill svg { width: 100%; height: auto; max-height: 320px; }
+  .filters { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+  .filter { font: 500 13px var(--font-sans); padding: 7px 14px; border-radius: 100px; border: 1px solid var(--border-2); background: #fff; color: var(--fg-2); cursor: pointer; }
+  .filter.active { background: var(--dj-navy-900); color: #fff; border-color: var(--dj-navy-900); }
+  .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .post { background: #fff; border: 1px solid var(--border-1); border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform .15s, box-shadow .15s, border-color .15s; }
+  .post:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--border-2); }
+  .post .cover { aspect-ratio: 16/10; background: var(--bg-3); position: relative; overflow: hidden; }
+  .post .cover .badge { position: absolute; top: 12px; left: 12px; background: #fff; font: 600 10px var(--font-mono); padding: 4px 8px; border-radius: 4px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2); }
+  .post .body { padding: 22px 24px; }
+  .post h3 { font: 600 17px/1.3 var(--font-sans); color: var(--fg-1); letter-spacing: -0.015em; margin-bottom: 10px; }
+  .post p { font-size: 13.5px; color: var(--fg-3); line-height: 1.5; margin-bottom: 14px; }
+  .post .meta { display: flex; gap: 14px; font: 500 12px var(--font-mono); color: var(--fg-4); }
+  .news-band { margin-top: 80px; background: var(--bg-2); border: 1px solid var(--border-1); border-radius: 14px; padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .news-band h3 { font: 600 26px var(--font-display); color: var(--fg-1); letter-spacing: -0.02em; margin-bottom: 10px; }
+  .news-band p { font-size: 14.5px; color: var(--fg-3); line-height: 1.55; }
+  .news-form { display: flex; gap: 10px; }
+  .news-form input { flex: 1; padding: 13px 16px; border: 1px solid var(--border-2); border-radius: 8px; background: #fff; font: 500 14px var(--font-sans); }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="eyebrow">DİJİTA BLOG</span>
+    <h1>Ürün notları, saha yazıları, mimari kararlar.</h1>
+    <p>İki haftada bir yazıyoruz. Türkçe. Somut. KOBİ operasyonu, Paraşüt/Telegram entegrasyon deneyimi, Türk KVKK pratiği, küçük model deployment.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <article class="featured">
+      <div>
+        <div class="tag">★ Öne çıkan · Mimari notu</div>
+        <h2>ONAYLIYORUM guard'ı neden HMAC değil, nonce tabanlı yazdık</h2>
+        <p>Replay saldırılarını, yan kanal sızıntılarını ve en önemlisi "müşteri telefonunu kaybetti" senaryosunu nasıl çözdük. 7 yıllık retention + guard ID'nin biçim tasarımı üstüne teknik bir yazı.</p>
+        <div class="meta">EBRU AKSOY · CTO · 12 NİS 2026 · 9 DK OKUMA</div>
+      </div>
+      <div class="ill">
+        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#33B8FF"/><stop offset="1" stop-color="#00A0FF"/></linearGradient></defs>
+          <rect x="40" y="60" width="320" height="160" rx="10" fill="rgba(255,255,255,0.06)" stroke="rgba(51,184,255,0.4)"/>
+          <text x="60" y="95" font-family="JetBrains Mono, monospace" font-size="14" fill="#33B8FF">guard_id:</text>
+          <text x="60" y="125" font-family="JetBrains Mono, monospace" font-size="20" fill="#fff" font-weight="600">DJA-7K2M-9QPR-3XL8</text>
+          <text x="60" y="155" font-family="JetBrains Mono, monospace" font-size="12" fill="#8fb0ff">nonce · 128bit · ephemeral</text>
+          <line x1="60" y1="175" x2="340" y2="175" stroke="rgba(51,184,255,0.3)" stroke-dasharray="4 4"/>
+          <text x="60" y="200" font-family="JetBrains Mono, monospace" font-size="12" fill="#bdd0ff">signed_at: 2026-04-12T14:33:21+03:00</text>
+          <circle cx="340" cy="100" r="14" fill="url(#lg)"/>
+          <path d="M334 100 l5 5 l8 -9" stroke="#002058" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </article>
+
+    <div class="filters">
+      <div class="filter active">Hepsi · 18</div>
+      <div class="filter">Ürün notları · 7</div>
+      <div class="filter">Saha · 5</div>
+      <div class="filter">Mimari · 3</div>
+      <div class="filter">KVKK &amp; Güvenlik · 2</div>
+      <div class="filter">Skill örnekleri · 1</div>
+    </div>
+
+    <div class="posts-grid">
+      <article class="post">
+        <div class="cover" style="background: linear-gradient(135deg, var(--dj-cyan-500), var(--dj-cyan-700));">
+          <span class="badge">ÜRÜN</span>
+        </div>
+        <div class="body">
+          <h3>Telegram üzerinden muhasebe: üç ayda ne öğrendik?</h3>
+          <p>32 pilot müşteride gözlemlediğimiz 7 somut davranış deseni ve bunlar ürünümüzü nasıl değiştirdi.</p>
+          <div class="meta"><span>OKAN KARA</span><span>10 NİS 2026</span><span>7 DK</span></div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="cover" style="background: var(--dj-navy-900);">
+          <span class="badge">SAHA</span>
+        </div>
+        <div class="body">
+          <h3>Ankara · Şahinoğlu Tekstil · 6 ayda 340 saat</h3>
+          <p>42 kişilik bir tekstil atölyesinde ofis personeli yükünün nasıl eridiğinin bire bir muhasebesi.</p>
+          <div class="meta"><span>MEHMET Ö.</span><span>03 NİS 2026</span><span>11 DK</span></div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="cover" style="background: #e8f5ff;">
+          <span class="badge">MİMARİ</span>
+        </div>
+        <div class="body">
+          <h3>Küçük modeli ofiste çalıştırmak: intent router serüveni</h3>
+          <p>Claude'a gitmeden önce yerel bir 3B modelle intent sınıflandırma. 17 ms cevap, %92 doğruluk.</p>
+          <div class="meta"><span>EBRU A.</span><span>29 MAR 2026</span><span>13 DK</span></div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="cover" style="background: #fff4e6;">
+          <span class="badge">ÜRÜN</span>
+        </div>
+        <div class="body">
+          <h3>Taslak önce, onay sonra — neden bu sırayla?</h3>
+          <p>Önce yazıp sonra onay istemeyi değil, önce taslak gösterip sonra yazmayı seçtik. Bir güven hikâyesi.</p>
+          <div class="meta"><span>ZEYNEP D.</span><span>22 MAR 2026</span><span>5 DK</span></div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="cover" style="background: #d8f5e4;">
+          <span class="badge">KVKK</span>
+        </div>
+        <div class="body">
+          <h3>7 yıllık onay logu: VUK vs. KVKK silinme hakkı</h3>
+          <p>Muhasebe saklama yükümlülüğü ile ilgili kişinin silinme hakkı arasında nasıl denge kurduk.</p>
+          <div class="meta"><span>OKAN K.</span><span>14 MAR 2026</span><span>8 DK</span></div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="cover" style="background: #f4ecff;">
+          <span class="badge">SKILL</span>
+        </div>
+        <div class="body">
+          <h3>"Müşterilerden tahsilatı toplu iste" skill'ini nasıl yazdık</h3>
+          <p>Türk KOBİ'nin ayın 20'sindeki en yorucu işi, 4 dakikalık bir toplu aksiyona nasıl düşürdük?</p>
+          <div class="meta"><span>MEHMET Ö.</span><span>06 MAR 2026</span><span>9 DK</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="news-band">
+      <div>
+        <span class="eyebrow">ÇEYREK KITA BÜLTENİ</span>
+        <h3 style="margin-top:12px">Ayda bir. Spam yok. Çıkış tek tık.</h3>
+        <p>Ürün güncellemeleri, pilot saha notları ve Paraşüt/KVKK üstüne okumaya değer 3 link.</p>
+      </div>
+      <div>
+        <form id="blog-news-form" class="news-form" action="/api/subscribe" method="POST">
+          <input type="email" name="email" placeholder="isim@şirket.com" required />
+          <button class="btn btn-primary" type="submit">Abone ol</button>
+        </form>
+        <p style="font-size:12px;color:var(--fg-4);margin-top:10px;font-family:var(--font-mono)">Resend üzerinden · EU · KVKK uyumlu</p>
+        <div id="blog-news-status" style="margin-top:6px;font-size:12px;color:var(--fg-3);min-height:14px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('blog-news-form');
+    const status = document.getElementById('blog-news-status');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Gönderiliyor…';
+      try {
+        const r = await fetch('/api/subscribe', { method: 'POST', body: new FormData(form) });
+        const j = await r.json();
+        status.textContent = r.ok ? (j.message || 'Teşekkürler.') : (j.message || 'Hata.');
+        if (r.ok) form.reset();
+      } catch (_) { status.textContent = 'Bağlantı hatası.'; }
+    });
+  })();
+</script>
+
+</Base>

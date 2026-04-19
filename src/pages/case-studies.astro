@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Vakalar · DijitAs" activeNav="case-studies" description="DijitAs pilot müşteri hikâyeleri — sektör, kullanım ve geri dönüş rakamlarıyla.">
+
+<style>
+  .case-hero { background: var(--bg-2); border: 1px solid var(--border-1); border-radius: 14px; padding: 48px 56px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; margin-bottom: 80px; }
+  .case-hero .brand { display:flex; align-items:center; gap: 14px; margin-bottom: 20px; }
+  .case-hero .brand-mark { width: 56px; height: 56px; border-radius: 10px; background: #8B5CF6; color: #fff; display: flex; align-items: center; justify-content: center; font: 700 24px var(--font-display); }
+  .case-hero .brand-name { font: 600 15px var(--font-mono); color: var(--fg-2); letter-spacing: 0.04em; }
+  .case-hero h2 { font: 600 34px/1.18 var(--font-display); color: var(--fg-1); letter-spacing: -0.025em; margin-bottom: 16px; }
+  .case-hero p.lede { font-size: 17px; line-height: 1.6; color: var(--fg-2); margin-bottom: 28px; }
+  .case-hero .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .case-hero .kpi .v { font: 700 28px var(--font-display); color: var(--dj-navy-900); letter-spacing: -0.02em; }
+  .case-hero .kpi .k { font: 500 12px var(--font-mono); color: var(--fg-3); margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .case-hero .quote-card { background: #fff; border: 1px solid var(--border-1); border-radius: 12px; padding: 32px; }
+  .case-hero .quote-card q { font: 500 19px/1.4 var(--font-display); color: var(--fg-1); letter-spacing: -0.01em; display: block; margin-bottom: 18px; }
+  .case-hero .quote-card q::before, .case-hero .quote-card q::after { content: ''; }
+  .case-hero .quote-author { display: flex; gap: 12px; align-items: center; }
+  .case-hero .quote-author .av { width: 40px; height: 40px; border-radius: 50%; background: var(--dj-navy-900); color: var(--dj-cyan-400); display: flex; align-items: center; justify-content: center; font: 700 14px var(--font-display); }
+  .case-hero .quote-author .n { font: 600 14px var(--font-sans); color: var(--fg-1); }
+  .case-hero .quote-author .t { font: 500 12px var(--font-mono); color: var(--fg-3); }
+  .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .case-card { background: #fff; border: 1px solid var(--border-1); border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .case-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .case-card .top { padding: 24px 24px 0; display: flex; align-items: center; justify-content: space-between; }
+  .case-card .mark { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font: 700 18px var(--font-display); color: #fff; }
+  .case-card .sector { font: 500 11px var(--font-mono); color: var(--fg-3); letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; background: var(--bg-3); }
+  .case-card .body { padding: 18px 24px 0; }
+  .case-card h3 { font: 600 17px/1.3 var(--font-sans); color: var(--fg-1); letter-spacing: -0.015em; margin-bottom: 8px; }
+  .case-card p { font-size: 13.5px; color: var(--fg-3); line-height: 1.5; }
+  .case-card .foot { padding: 16px 24px 20px; margin-top: 16px; border-top: 1px solid var(--border-1); display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .case-card .foot .kpi .v { font: 700 16px var(--font-display); color: var(--dj-navy-900); letter-spacing: -0.015em; }
+  .case-card .foot .kpi .k { font: 500 10px var(--font-mono); color: var(--fg-4); letter-spacing: 0.04em; text-transform: uppercase; margin-top: 2px; }
+  .logo-strip { margin-top: 80px; padding: 48px 0; border-top: 1px solid var(--border-1); border-bottom: 1px solid var(--border-1); }
+  .logo-strip .lbl { font: 500 12px var(--font-mono); color: var(--fg-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; text-align: center; }
+  .logo-strip .logos { display: flex; justify-content: center; align-items: center; gap: 64px; flex-wrap: wrap; font: 700 18px var(--font-display); color: var(--fg-4); letter-spacing: -0.01em; }
+  .logo-strip .logos span { opacity: 0.7; }
+  .cta-band { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 40px; background: var(--dj-navy-900); color: #fff; border-radius: 12px; }
+  .cta-band h3 { font: 700 22px var(--font-display); letter-spacing: -0.02em; margin-bottom: 6px; }
+  .cta-band p { font-size: 14.5px; color: #bdd0ff; }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="eyebrow">MÜŞTERİ HİKÂYELERİ</span>
+    <h1>32 KOBİ. 6 şehir. 9 ay.</h1>
+    <p>Asistan nasıl çalışıyor, insanlar gerçekte ne hissediyor, rakamlar nereye iniyor. Gerçek vakalar, isim isim, rakam rakam.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <article class="case-hero">
+      <div>
+        <div class="brand"><div class="brand-mark" style="background:#8B5CF6">Ş</div>
+          <div><div class="brand-name">ŞAHİNOĞLU TEKSTİL</div><div style="font-size:12px;color:var(--fg-3);font-family:var(--font-mono)">Ankara · 42 kişi · tekstil imalat</div></div>
+        </div>
+        <h2>Ofis personelinin 340 saati 6 ayda nasıl geri kazanıldı?</h2>
+        <p class="lede">"Her gün ortalama 20 müşteri bakiye sorardı. Ofis elemanı telefonu açıp Paraşüt'e bakıp cevaplardı — 3 saat. DijitAs kurulduktan sonra o işe hiç dokunulmuyor."</p>
+        <div class="kpis">
+          <div class="kpi"><div class="v">340 sa</div><div class="k">kazanılan süre</div></div>
+          <div class="kpi"><div class="v">%94</div><div class="k">onay doğruluk</div></div>
+          <div class="kpi"><div class="v">4.2 ay</div><div class="k">ROI</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <q>İlk ay sadece izledim. İkinci ay güvendim. Üçüncü ay ofis elemanımı bu işten çektim, başka işe verdim. Artık ben de tatil yapıyorum.</q>
+        <div class="quote-author"><div class="av">HŞ</div><div><div class="n">Hüseyin Şahinoğlu</div><div class="t">KURUCU · ŞAHİNOĞLU TEKSTİL</div></div></div>
+        <a href="#" class="btn btn-ghost btn-sm" style="margin-top: 20px">Tam hikâyeyi oku →</a>
+      </div>
+    </article>
+
+    <span class="eyebrow">TÜM VAKALAR</span>
+    <h2 class="section-title" style="margin-top:16px; margin-bottom: 32px">Sektör &amp; kullanım bazlı.</h2>
+
+    <div class="case-grid">
+      <article class="case-card">
+        <div class="top"><div class="mark" style="background:#FF6B35">M</div><div class="sector">KIRTASİYE</div></div>
+        <div class="body"><h3>Murat Bey'in kırtasiyesi · 12 kişi</h3><p>Güne Telegram brifingiyle başlıyor, tahsilat mesajları asistan tarafından taslaklanıyor, vade takibi artık gözden kaçmıyor.</p></div>
+        <div class="foot">
+          <div class="kpi"><div class="v">%38</div><div class="k">tahsilat ↑</div></div>
+          <div class="kpi"><div class="v">2.1 sa</div><div class="k">günde ↓</div></div>
+          <div class="kpi"><div class="v">91 gün</div><div class="k">ROI</div></div>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="top"><div class="mark" style="background:#2FB26B">K</div><div class="sector">GIDA TOPTANCI</div></div>
+        <div class="body"><h3>Kocabaş Gıda · 28 kişi · 3 şube</h3><p>3 şubeden gelen siparişlerin sesli nota dönüşen halleri tek ekrana toplandı. Mali müşavir ile haftalık özet kendi kendine gidiyor.</p></div>
+        <div class="foot">
+          <div class="kpi"><div class="v">180 sa</div><div class="k">/ay kazanç</div></div>
+          <div class="kpi"><div class="v">%97</div><div class="k">doğruluk</div></div>
+          <div class="kpi"><div class="v">5 ay</div><div class="k">ROI</div></div>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="top"><div class="mark" style="background:#D84775">A</div><div class="sector">KOZMETİK ATÖLYE</div></div>
+        <div class="body"><h3>Ayla Güzellik · 6 kişi</h3><p>Günde 45+ WhatsApp randevu talebi, asistan tarafından taslaklanıyor; kurucu sadece onay veriyor. Personel yükü %60 azaldı.</p></div>
+        <div class="foot">
+          <div class="kpi"><div class="v">%60</div><div class="k">yük ↓</div></div>
+          <div class="kpi"><div class="v">45+</div><div class="k">/gün randevu</div></div>
+          <div class="kpi"><div class="v">3 ay</div><div class="k">ROI</div></div>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="top"><div class="mark" style="background:#00A0FF">D</div><div class="sector">E-TİCARET</div></div>
+        <div class="body"><h3>Doğa Organik · 15 kişi · online</h3><p>Trendyol + Ciceksepeti + kendi kanal siparişleri tek intent router'dan geçip Paraşüt'e düşüyor. Muhasebe mutabakatı haftalık.</p></div>
+        <div class="foot">
+          <div class="kpi"><div class="v">3 kanal</div><div class="k">tek akış</div></div>
+          <div class="kpi"><div class="v">%82</div><div class="k">oto-mutabık</div></div>
+          <div class="kpi"><div class="v">6.5 ay</div><div class="k">ROI</div></div>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="top"><div class="mark" style="background:#FFB800">B</div><div class="sector">İNŞAAT MALZEMESİ</div></div>
+        <div class="body"><h3>Bahadır Yapı · 22 kişi</h3><p>Şantiyeden sesli nota dönen teklif istekleri, ses-metin + fiyat çekme + taslak teklif olarak dönüyor. Onay tek tık.</p></div>
+        <div class="foot">
+          <div class="kpi"><div class="v">4x</div><div class="k">teklif hızı</div></div>
+          <div class="kpi"><div class="v">%28</div><div class="k">kazanılan iş ↑</div></div>
+          <div class="kpi"><div class="v">4.8 ay</div><div class="k">ROI</div></div>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="top"><div class="mark" style="background:#64748B">T</div><div class="sector">MUHASEBE MÜŞAVİR</div></div>
+        <div class="body"><h3>Toprak Müşavirlik · 8 kişi · 60 müşteri</h3><p>Her KOBİ müşterisinin DijitAs logundan kendi ofisine birleştirilmiş özet geliyor. 60 mutabakatın 48'i otomatik kapanıyor.</p></div>
+        <div class="foot">
+          <div class="kpi"><div class="v">48/60</div><div class="k">oto-mutabakat</div></div>
+          <div class="kpi"><div class="v">90 sa</div><div class="k">/ay kazanç</div></div>
+          <div class="kpi"><div class="v">2 ay</div><div class="k">ROI</div></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="logo-strip">
+      <div class="lbl">32+ KOBİ'NİN GÜVENİ · 6 ŞEHİR · 9 AY PİLOT</div>
+      <div class="logos">
+        <span>ŞAHİNOĞLU</span><span>KOCABAŞ</span><span>AYLA</span><span>DOĞA</span><span>BAHADIR</span><span>TOPRAK</span><span>+26</span>
+      </div>
+    </div>
+
+    <div class="cta-band" style="margin-top: 80px">
+      <div class="content"><h3>Sıradaki hikâye sizinki olsun.</h3><p>Ücretsiz 45 dakikalık demo · TCO hesabı · 6 haftalık kurulum takvimi.</p></div>
+      <div class="actions"><a class="btn btn-accent" href="/iletisim">Demo talep et →</a></div>
+    </div>
+
+  </div>
+</section>
+
+</Base>

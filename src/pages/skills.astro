@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+
+const skills = [
+  { n: '01', t: 'Gelen fatura işleme', d: "Mail/Telegram'a düşen alış faturasını OCR ile okur, Paraşüt'e alış kaydı olarak girer.", c: 'MUHASEBE', r: 'med', rl: 'ORTA · ONAY', s: 'on', sl: 'Canlı' },
+  { n: '02', t: 'Giden fatura kesme', d: 'Cari + tutar + vade verilince e-Fatura taslağı hazırlar, ONAYLIYORUM alır, keser.', c: 'MUHASEBE', r: 'high', rl: 'YÜKSEK · ONAY', s: 'on', sl: 'Canlı' },
+  { n: '03', t: 'Bakiye & tahsilat sorgusu', d: 'Cari bakiye, vadesi gelen alacaklar, borçlu müşteri listesi, banka mutabakat.', c: 'MUHASEBE', r: 'read', rl: 'OKUMA', s: 'on', sl: 'Canlı' },
+  { n: '04', t: 'Sipariş takibi', d: 'Açık siparişler, üretim durumu, sevk tarihi, faturalandırma akışı.', c: 'OPERASYON', r: 'low', rl: 'DÜŞÜK', s: 'on', sl: 'Canlı' },
+  { n: '05', t: 'Görüşme özeti & aksiyon', d: 'Sesli notları Türkçe transkript eder, aksiyon maddesi ve hatırlatma çıkarır.', c: 'İLETİŞİM', r: 'read', rl: 'OKUMA', s: 'on', sl: 'Canlı' },
+  { n: '06', t: 'Teklif yönetimi', d: 'Açık teklifler, kabul/red takibi, geçerlilik süresi, faturaya dönüştürme.', c: 'MUHASEBE', r: 'med', rl: 'ORTA · ONAY', s: 'soon', sl: 'Q2 2026' },
+  { n: '07', t: 'Stok uyarıları', d: "BOM üzerinden kritik seviye altına düşen malzemeyi Telegram'dan haber verir.", c: 'OPERASYON', r: 'read', rl: 'OKUMA', s: 'soon', sl: 'Q2 2026' },
+  { n: '08', t: 'Günlük brifing', d: "Sabah 08:00'de dün kapanan + bugün öncelikli işlerin 4-satırlık özeti.", c: 'SİSTEM', r: 'read', rl: 'OKUMA', s: 'on', sl: 'Canlı' },
+  { n: '09', t: 'Banka hareketi mutabakat', d: "Banka ekstresi CSV'den gelen girişleri Paraşüt tahsilat/ödeme kayıtlarıyla eşler.", c: 'MUHASEBE', r: 'high', rl: 'YÜKSEK · ONAY', s: 'soon', sl: 'Q3 2026' },
+  { n: '10', t: 'Müşteri hatırlatma taslağı', d: 'Vadesi geçen cari için tahsilat mesajı önerir — siz gönderin.', c: 'İLETİŞİM', r: 'low', rl: 'DÜŞÜK', s: 'soon', sl: 'Q2 2026' },
+  { n: '11', t: 'Tedarikçi teklif isteği', d: 'Malzeme + miktar + teklif isteme mesajı hazırlar, onayınızla gönderir.', c: 'OPERASYON', r: 'med', rl: 'ORTA · ONAY', s: 'soon', sl: 'Q3 2026' },
+  { n: '12', t: 'Nakit akışı projeksiyonu', d: 'Açık alacak + verdiği ödeme tarihlerine göre 30/60/90 günlük tahmin.', c: 'MUHASEBE', r: 'read', rl: 'OKUMA', s: 'soon', sl: 'Q3 2026' },
+  { n: '13', t: 'KDV beyan öncesi kontrol', d: 'Aylık KDV hesaplaması, eksik belge uyarısı, mali müşavir için özet.', c: 'MUHASEBE', r: 'read', rl: 'OKUMA', s: 'soon', sl: 'Q4 2026' },
+  { n: '14', t: 'Rapor oluşturma', d: '"Mart ayı satış raporunu gönder" → Excel + PDF hazırlar, mail atar.', c: 'İLETİŞİM', r: 'low', rl: 'DÜŞÜK', s: 'soon', sl: 'Q2 2026' },
+  { n: '15', t: 'Aksiyon iptali / düzeltme', d: 'Son aksiyonu (fatura, alış, tahsilat) kullanıcıya sorarak geri alır.', c: 'SİSTEM', r: 'high', rl: 'YÜKSEK · ONAY', s: 'soon', sl: 'Q2 2026' }
+];
+---
+<Base title="Skill'ler · DijitAs" activeNav="skills" description="15 çekirdek skill — her biri kendi risk profili, onay politikası ve log kaydıyla.">
+
+<style>
+  .skill-table { border: 1px solid var(--border-1); border-radius: 10px; overflow: hidden; background:#fff; }
+  .skill-row { display: grid; grid-template-columns: 80px 1fr 140px 140px 120px; padding: 18px 24px; border-bottom: 1px solid var(--border-1); align-items: center; gap: 20px; transition: background var(--dur-fast) var(--ease-standard); }
+  .skill-row:hover { background: var(--bg-3); cursor: pointer; }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-row .num { font: 700 20px var(--font-display); color: var(--dj-cyan-600); letter-spacing: -0.02em; }
+  .skill-row .info h4 { font: 600 15.5px var(--font-sans); letter-spacing: -0.01em; color: var(--fg-1); margin-bottom: 4px; }
+  .skill-row .info p { font-size: 13.5px; line-height: 1.5; color: var(--fg-3); }
+  .skill-row .cat { font: 500 12px var(--font-mono); color: var(--fg-3); letter-spacing: 0.04em; }
+  .skill-row .risk { display: inline-flex; gap: 6px; align-items: center; font: 600 11px var(--font-mono); padding: 3px 8px; border-radius: 3px; letter-spacing: 0.04em; width: fit-content; }
+  .risk.low { background: var(--dj-trust-50); color: var(--dj-trust-700); }
+  .risk.med { background: #fffbeb; color: var(--dj-warning-700); }
+  .risk.high { background: var(--dj-danger-50); color: var(--dj-danger-700); }
+  .risk.read { background: var(--dj-cyan-50); color: var(--dj-cyan-700); }
+  .status { display:inline-flex; gap:6px; align-items:center; font: 500 12px var(--font-mono); }
+  .status .d { width:8px; height:8px; border-radius: 50%; }
+  .status.on .d { background: var(--dj-trust-500); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
+  .status.soon .d { background: var(--fg-4); }
+  .table-header { display: grid; grid-template-columns: 80px 1fr 140px 140px 120px; padding: 12px 24px; background: var(--bg-3); border-bottom: 1px solid var(--border-1); gap: 20px; font: 600 10px var(--font-mono); color: var(--fg-3); letter-spacing: 0.08em; text-transform: uppercase; }
+  .cat-filter { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .cat-filter button { background: #fff; border: 1px solid var(--border-1); border-radius: 100px; padding: 6px 14px; font: 500 13px var(--font-sans); color: var(--fg-2); cursor: pointer; }
+  .cat-filter button.active { background: var(--dj-navy-900); color: #fff; border-color: var(--dj-navy-900); }
+  .deep-dive { background: #fff; border: 1px solid var(--border-1); border-radius: 10px; padding: 32px; margin-top: 56px; }
+  .deep-dive h3 { font: 700 22px var(--font-display); letter-spacing: -0.02em; color: var(--dj-navy-900); margin-bottom: 16px; }
+  .flow-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 24px; }
+  .flow-step { background: var(--bg-3); border: 1px solid var(--border-1); border-radius: 6px; padding: 14px; }
+  .flow-step .n { font: 700 11px var(--font-mono); color: var(--dj-cyan-600); letter-spacing: 0.06em; margin-bottom: 4px; }
+  .flow-step .t { font: 600 13px var(--font-sans); color: var(--fg-1); line-height: 1.35; }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="eyebrow">SKILL'LER</span>
+    <h1>15 çekirdek yetenek.</h1>
+    <p>Her skill kendi risk profiline, onay politikasına ve log kaydına sahiptir. Aşağıda skill kataloğu + her biri için akış şeması.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="cat-filter" id="cat-filter">
+      <button class="active" data-cat="all">Tümü · 15</button>
+      <button data-cat="MUHASEBE">Muhasebe · 7</button>
+      <button data-cat="OPERASYON">Operasyon · 3</button>
+      <button data-cat="İLETİŞİM">İletişim · 3</button>
+      <button data-cat="SİSTEM">Sistem · 2</button>
+    </div>
+
+    <div class="skill-table" id="skill-table">
+      <div class="table-header">
+        <span>#</span><span>Skill</span><span>Kategori</span><span>Risk seviyesi</span><span>Durum</span>
+      </div>
+      {skills.map((s) => (
+        <div class="skill-row" data-cat={s.c}>
+          <div class="num">{s.n}</div>
+          <div class="info"><h4>{s.t}</h4><p>{s.d}</p></div>
+          <div class="cat">{s.c}</div>
+          <span class={`risk ${s.r}`}>{s.rl}</span>
+          <span class={`status ${s.s}`}><span class="d"></span>{s.sl}</span>
+        </div>
+      ))}
+    </div>
+
+    <script is:inline>
+      (function () {
+        const filter = document.getElementById('cat-filter');
+        const table = document.getElementById('skill-table');
+        if (!filter || !table) return;
+        filter.addEventListener('click', (e) => {
+          const btn = e.target.closest('button[data-cat]');
+          if (!btn) return;
+          filter.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.getAttribute('data-cat');
+          table.querySelectorAll('.skill-row[data-cat]').forEach((row) => {
+            row.style.display = cat === 'all' || row.getAttribute('data-cat') === cat ? '' : 'none';
+          });
+        });
+      })();
+    </script>
+
+    <div class="deep-dive">
+      <span class="badge badge-cyan">DERİNE İNCELE · SKILL #02</span>
+      <h3 style="margin-top:12px">Giden fatura kesme — adım adım akış</h3>
+      <p style="color:var(--fg-2);font-size:15px;line-height:1.6;max-width:760px">En çok kullanılan skill. Sistem yüksek-risk sınıfına koyar: her çağrı zorunlu ONAYLIYORUM gerektirir, cari doğrulama iki kademelidir.</p>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="n">01 · NIYET</div><div class="t">Telegram mesajı intent router'a gider</div></div>
+        <div class="flow-step"><div class="n">02 · ÇÖZÜM</div><div class="t">Paraşüt'te cari + varsayılan ürün bulunur</div></div>
+        <div class="flow-step"><div class="n">03 · TASLAK</div><div class="t">KDV hesaplanır, matrah/toplam gösterilir</div></div>
+        <div class="flow-step"><div class="n">04 · ONAY</div><div class="t">Kullanıcı tam olarak ONAYLIYORUM yazar</div></div>
+        <div class="flow-step"><div class="n">05 · KESİM</div><div class="t">Paraşüt API · FAT-XXXX · log alınır</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="shell" style="text-align:center">
+    <h2 class="section-title" style="margin: 0 auto 20px">Kendi skill'inizi talep edin.</h2>
+    <p class="lede" style="margin: 0 auto 28px">15 çekirdek skill üstüne, operasyonunuza özel skill'ler per-diem fiyatla geliştirilir. Ortalama bir skill 2-5 gün içinde canlıda.</p>
+    <a class="btn btn-primary btn-lg" href="/iletisim">Özel skill talep et <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
+  </div>
+</section>
+
+</Base>
