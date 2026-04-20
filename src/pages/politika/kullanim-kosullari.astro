@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Kullanım Koşulları · DijitAs" description="DijitAs hizmet kullanım koşulları — sürüm 0.1 taslak.">
+
+<style>
+  .draft-banner { background: #fff8e1; border: 1px solid #f59e0b; border-radius: 8px; padding: 14px 20px; font-size: 13.5px; color: #92400e; margin-bottom: 32px; display:flex; gap:10px; align-items:flex-start; }
+  .draft-banner svg { flex-shrink:0; margin-top:1px; }
+  .prose { max-width: 760px; }
+  .prose h2 { font: 700 20px var(--font-sans); color: var(--fg-1); margin: 40px 0 14px; letter-spacing: -0.02em; border-bottom: 1px solid var(--border-1); padding-bottom: 10px; }
+  .prose h3 { font: 600 15px var(--font-sans); color: var(--fg-1); margin: 24px 0 8px; }
+  .prose p, .prose li { font-size: 14.5px; color: var(--fg-2); line-height: 1.7; }
+  .prose ul { padding-left: 20px; margin: 10px 0; }
+  .prose li { margin: 4px 0; }
+  .prose .meta { font-size:13px; color:var(--fg-3); margin-bottom:28px; }
+  .prose strong { color: var(--fg-1); }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="badge" style="margin-bottom:18px"><i data-lucide="file-text" style="width:11px;height:11px"></i>HUKUKİ</span>
+    <h1>Kullanım Koşulları</h1>
+    <p>DijitAs hizmetine erişim ve kullanım koşulları.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell prose">
+
+    <div class="draft-banner">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div><strong>Taslak belge — yürürlükte değildir.</strong> Bu metin hukuk danışmanı incelemesinden geçmemiştir. Onay öncesinde bağlayıcılığı yoktur. Güncelleme tarihinde bu satır kaldırılacaktır.</div>
+    </div>
+
+    <p class="meta">Sürüm: 0.1 · 2026-04-20 · Taslak</p>
+
+    <h2>1. Taraflar</h2>
+    <p>1.1. <strong>Hizmet Sağlayıcı / Biz:</strong> <em>DijitA Yazılım A.Ş.</em> (kuruluş sürecinde), İstanbul.</p>
+    <p>1.2. <strong>Müşteri / Siz:</strong> DijitAs hizmetine abonelik yoluyla erişen gerçek veya tüzel kişi.</p>
+    <p>1.3. Bu metin, <strong>DijitAs</strong> ürününün kullanımına ilişkin karşılıklı hak ve yükümlülükleri düzenler.</p>
+
+    <h2>2. Tanımlar</h2>
+    <ul>
+      <li><strong>DijitAs:</strong> DijitA tarafından geliştirilen, KOBİ'ler için yapay zekâ destekli operasyon asistanı yazılımı ve donanım paketi.</li>
+      <li><strong>Cihaz:</strong> Müşteri ofisinde kurulan Linux tabanlı mini-PC.</li>
+      <li><strong>Yapay Zekâ Modülleri:</strong> Metin üretimi, anlama, sınıflandırma ve karar desteği sağlayan büyük dil modelleri. Mevcut sağlayıcılar: Anthropic Claude ve Google Gemini.</li>
+      <li><strong>Skill:</strong> Belirli bir iş akışını çalıştıran modüler yetenek (örn. fatura kesme, tahsilat sorgusu).</li>
+      <li><strong>Onay (ONAYLIYORUM):</strong> Yazma aksiyonu için yetkili temsilciden alınan yazılı beyan.</li>
+      <li><strong>Guard ID:</strong> Her ONAYLIYORUM onayının benzersiz kaydı; 7 yıl saklanır.</li>
+    </ul>
+
+    <h2>3. Hizmet Kapsamı</h2>
+    <p>3.1. DijitAs, muhasebe, teklif, sipariş, stok ve tahsilat gibi operasyon alanlarında yapay zekâ destekli öneriler ve Müşteri onayı sonrasında aksiyonlar üretir.</p>
+    <p>3.2. Cihaz sözleşme süresince DijitA mülkiyetinde kalır; sözleşme sona erdiğinde iade edilir.</p>
+    <p>3.3. Yapay zekâ çağrı maliyeti abonelik bedeline dahildir; adil kullanım sınırı aşıldığında yazılı bildirim yapılır.</p>
+
+    <h2>4. Yapay Zekâ — Genel Çerçeve</h2>
+    <p>4.1. Yapay Zekâ Modülleri çıktıları istatistiksel yöntemlerle üretir ve <strong>deterministik değildir</strong>. Aynı girdiye farklı cevap verebilir; yanlış veya eksik sonuçlar üretebilir.</p>
+    <p>4.2. Müşteri, Yapay Zekâ Modülleri'nin "ön değerlendirme ve destek aracı" olduğunu, nihai karar verici niteliği taşımadığını kabul eder.</p>
+    <p>4.3. LLM sağlayıcılara <strong>anonimleştirilmiş sablon metin</strong> iletilir. Cari isimleri, tutarlar ve belge kimlikleri gönderim öncesi maskelenir.</p>
+
+    <h2>5. Eğitim Verisi Kullanımı Yasağı</h2>
+    <p>5.1. <strong>DijitA, Müşteri'ye ait verilerin yapay zekâ modellerinin genel eğitimi (training / fine-tuning) amacıyla kullanılmayacağını taahhüt eder.</strong></p>
+    <p>5.2. Anthropic ve Google, API üzerinden gelen müşteri verilerini modellerini eğitmek için kullanmama taahhüdünde bulunmaktadır. Bu taahhütlerin güncel sürümleri Müşteri talebinde paylaşılır.</p>
+
+    <h2>6. Garanti Reddi</h2>
+    <p>Hizmet "olduğu gibi" sunulur. DijitA, Yapay Zekâ Modülleri çıktılarının doğruluğunu, tamlığını, mevzuata uygunluğunu, güncelliğini veya belirli amaca uygunluğunu garanti etmez.</p>
+
+    <h2>7. İnsan Denetimi Zorunluluğu</h2>
+    <p>7.1. <strong>Yazma aksiyonları otomatik gerçekleşmez.</strong> Her yazma aksiyonu için yetkili temsilcinin "ONAYLIYORUM" beyanı zorunludur.</p>
+    <p>7.2. DijitAs, resmi mercilere doğrudan beyan gönderme yetkisine sahip değildir.</p>
+    <p>7.3. Vergi beyannameleri ve finansal tablolar, insan uzmanların nihai onayından geçirilmeksizin resmî mercilere sunulmamalıdır.</p>
+
+    <h2>8. Müşteri Yükümlülükleri</h2>
+    <p>8.1. Girilen verilerin doğru, güncel ve eksiksiz olmasından Müşteri sorumludur.</p>
+    <p>8.2. Hizmet yürürlükteki mevzuata (VUK, TTK, KVKK) uygun biçimde kullanılır.</p>
+    <p>8.3. Kullanıcı hesapları ve ONAYLIYORUM yetkisi taşıyan yetkililerin yönetiminden Müşteri sorumludur.</p>
+    <p>8.4. Kişisel verilerin Veri Sorumlusu Müşteri'dir; aydınlatma, rıza ve VERBİS bildirimi Müşteri yükümlülüğündedir.</p>
+
+    <h2>9. Fikri Mülkiyet</h2>
+    <p>9.1. DijitAs yazılımı, skill kütüphaneleri ve tasarım sistemi DijitA'ya aittir.</p>
+    <p>9.2. Müşteri'nin ürettiği çıktılar (taslak fatura, teklif vb.) Müşteri iç kullanımına yöneliktir; üçüncü kişilere sunulmasından Müşteri sorumludur.</p>
+
+    <h2>10. Abonelik, Ödeme ve Fesih</h2>
+    <p>10.1. Abonelik aylık veya yıllık faturalandırılır; ödenmemesi halinde 7 iş günü bildirim sonrası hizmet askıya alınır.</p>
+    <p>10.2. Müşteri 30 gün önceden yazılı bildirimle sözleşmeyi feshedebilir; DijitA aynı süreyle fesih hakkına sahiptir.</p>
+    <p>10.3. Fesih sonrasında cihaz iade edilir ve Müşteri verisi talep üzerine dışa aktarılır.</p>
+
+    <h2>11. Sorumluluk Sınırı</h2>
+    <p>11.1. DijitA'nın herhangi bir olay nedeniyle sorumluluğu, olayın gerçekleştiği aydaki <strong>aylık abonelik bedeli ile sınırlıdır</strong>.</p>
+    <p>11.2. Üçüncü taraf hizmetlerden (Paraşüt, Telegram, LLM sağlayıcıları) kaynaklanan aksaklıklar DijitA sorumluluğunda değildir.</p>
+    <p>11.3. Müşteri, yanlış veya eksik veriden doğan zararlardan bizzat sorumludur.</p>
+
+    <h2>12. Gizlilik ve KVKK</h2>
+    <p>Kişisel veri işleme detayları için <a href="aydinlatma">KVKK Aydınlatma Metni</a>'ni inceleyiniz. DijitA ve Müşteri arasında ayrıca <strong>Veri İşleme Sözleşmesi (DPA)</strong> imzalanır.</p>
+
+    <h2>13. Mücbir Sebep</h2>
+    <p>DijitA, doğal afet, enerji kesintisi, internet servis sağlayıcısı kesintisi, siber saldırı, yasal düzenleme veya üçüncü taraf sağlayıcı kaynaklı aksaklıklar nedeniyle yükümlülüklerini yerine getiremezse sorumluluk doğmaz; durum Müşteri'ye en kısa sürede bildirilir.</p>
+
+    <h2>14. Değişiklikler</h2>
+    <p>14.1. DijitA bu koşulları 30 gün önceden yazılı/e-posta bildirimiyle güncelleyebilir. Süre sonunda Hizmet kullanımı devam ederse değişiklikler kabul edilmiş sayılır.</p>
+    <p>14.2. Esaslı değişikliklerde Müşteri'nin yeniden onayı alınır.</p>
+
+    <h2>15. Uygulanacak Hukuk ve Uyuşmazlık Çözümü</h2>
+    <p>Bu sözleşme Türk Hukuku'na tabi olup uyuşmazlıklarda <strong>İstanbul (Çağlayan) Mahkemeleri ve İcra Daireleri</strong> yetkilidir.</p>
+
+    <h2>16. Yürürlük</h2>
+    <p>Bu metin, Müşteri'nin onboarding sırasında "Okudum, onaylıyorum" beyanını dijital ortamda vermesiyle yürürlüğe girer. Beyan tarihi ve versiyonu <code>dijitas_onay_log</code> tablosuna yazılır.</p>
+
+  </div>
+</section>
+
+</Base>

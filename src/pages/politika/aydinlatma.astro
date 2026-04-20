@@ -1,0 +1,136 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="KVKK Aydınlatma Metni · DijitAs" description="DijitAs KVKK Aydınlatma Metni — sürüm 0.2 taslak.">
+
+<style>
+  .draft-banner { background: #fff8e1; border: 1px solid #f59e0b; border-radius: 8px; padding: 14px 20px; font-size: 13.5px; color: #92400e; margin-bottom: 32px; display:flex; gap:10px; align-items:flex-start; }
+  .draft-banner svg { flex-shrink:0; margin-top:1px; }
+  .prose { max-width: 760px; }
+  .prose h2 { font: 700 20px var(--font-sans); color: var(--fg-1); margin: 40px 0 14px; letter-spacing: -0.02em; border-bottom: 1px solid var(--border-1); padding-bottom: 10px; }
+  .prose h3 { font: 600 15px var(--font-sans); color: var(--fg-1); margin: 24px 0 8px; }
+  .prose p, .prose li { font-size: 14.5px; color: var(--fg-2); line-height: 1.7; }
+  .prose ul { padding-left: 20px; margin: 10px 0; }
+  .prose li { margin: 4px 0; }
+  .prose .meta { font-size:13px; color:var(--fg-3); margin-bottom:28px; }
+  .prose strong { color: var(--fg-1); }
+  .data-table { width:100%; border-collapse:collapse; border:1px solid var(--border-1); border-radius: 8px; overflow:hidden; background:#fff; margin: 16px 0 24px; }
+  .data-table th, .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border-1); text-align:left; font-size: 13px; vertical-align: top; }
+  .data-table th { background: var(--bg-3); font: 600 11px var(--font-mono); color: var(--fg-3); letter-spacing: 0.06em; text-transform: uppercase; }
+  .data-table tr:last-child td { border-bottom: none; }
+</style>
+
+<section class="page-header">
+  <div class="shell">
+    <span class="badge" style="margin-bottom:18px"><i data-lucide="shield" style="width:11px;height:11px"></i>HUKUKİ</span>
+    <h1>KVKK Aydınlatma Metni</h1>
+    <p>6698 sayılı KVKK Madde 10 kapsamında kişisel veri işleme hakkında bilgilendirme.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell prose">
+
+    <div class="draft-banner">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div><strong>Taslak belge — yürürlükte değildir.</strong> Hukuk danışmanı onayından önce bağlayıcılığı yoktur.</div>
+    </div>
+
+    <p class="meta">Sürüm: 0.2 · 2026-04-20 · Taslak</p>
+
+    <h2>1. Veri Sorumlusu ve Veri İşleyen</h2>
+
+    <h3>1.1. Veri Sorumlusu</h3>
+    <p>DijitAs cihazı Müşteri ofisinde kurulur; kullanıcı mesajları, Paraşüt verisi, onay kayıtları ve sistem logları öncelikle Müşteri'nin cihazında barındırılır. Bu verilerin işlenmesinin <strong>Veri Sorumlusu</strong>, DijitAs'ı kuran <strong>Müşteri işletmesi</strong>dir. KVKK veri sorumluluğu Müşteri'nin tüzel/gerçek kişiliğine aittir.</p>
+
+    <h3>1.2. Veri İşleyen (DijitA)</h3>
+    <p><strong>DijitA Yazılım A.Ş.</strong> (adres ve sicil bilgisi <em>[eklenecek]</em>), Müşteri adına ve imzalanan <strong>Veri İşleme Sözleşmesi (DPA)</strong> çerçevesinde yazılım sağlayan ve bakım desteği veren <strong>Veri İşleyen</strong> sıfatını taşır.</p>
+
+    <h3>1.3. Alt Veri İşleyenler</h3>
+    <table class="data-table">
+      <thead><tr><th>Sağlayıcı</th><th>Ülke</th><th>Rol</th><th>Paylaşılan Veri</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Paraşüt Yazılım</strong></td><td>Türkiye</td><td>Muhasebe API</td><td>Cari, fatura, tahsilat, stok</td></tr>
+        <tr><td><strong>Anthropic, PBC</strong></td><td>ABD / AB</td><td>LLM (Claude)</td><td>Anonim/maskelenmiş intent metni — eğitim amaçlı kullanılmaz</td></tr>
+        <tr><td><strong>Google LLC</strong></td><td>AB / ABD</td><td>LLM (Gemini)</td><td>Anonim/maskelenmiş intent metni — eğitim amaçlı kullanılmaz</td></tr>
+        <tr><td><strong>Telegram FZ-LLC</strong></td><td>BAE (küresel)</td><td>Mesajlaşma</td><td>Mesaj içeriği + metadata</td></tr>
+        <tr><td><strong>Meta Platforms</strong> (Faz 2)</td><td>AB / ABD</td><td>WhatsApp Business</td><td>Mesaj içeriği + metadata</td></tr>
+        <tr><td><strong>Resend Inc.</strong></td><td>AB</td><td>Transactional e-posta</td><td>E-posta içeriği</td></tr>
+        <tr><td><strong>Hetzner Online</strong></td><td>Almanya (İstanbul)</td><td>Yedekleme</td><td>Şifreli veri yedeği; anahtar Müşteri'dedir</td></tr>
+        <tr><td><strong>Plausible Analytics</strong></td><td>AB (Almanya)</td><td>Web analitiği</td><td>Agregat trafik — cookie yok, PII yok</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.4. Yurt Dışı Aktarım</h3>
+    <p>Yapay zekâ modülleri (Claude, Gemini), mesajlaşma platformları (Telegram, WhatsApp) ve e-posta/analitik sağlayıcıları aracılığıyla <strong>yurt dışı aktarım gerçekleşir</strong>. Yurt dışı aktarımda KVKK Madde 9 kapsamında Müşteri'nin açık rızası veya yeterli koruma şartları aranır. DijitA, alt veri işleyenlerle imzalanan Standart Sözleşme Maddeleri (SCC) ve eğitim-dışı-kullanım taahhütleriyle yeterli koruma çerçevesini oluşturur.</p>
+
+    <h2>2. İşlenen Kişisel Veri Kategorileri</h2>
+    <ul>
+      <li><strong>Kimlik:</strong> Kullanıcı adı, telefon, Telegram ID, e-posta</li>
+      <li><strong>İletişim:</strong> Telegram sohbet geçmişi</li>
+      <li><strong>Finans:</strong> Cari bakiye, fatura tutarı, ödeme vadesi (Paraşüt'ten okunan/yazılan)</li>
+      <li><strong>İşlem güvenliği:</strong> ONAYLIYORUM beyanı, Guard ID, IP, zaman damgası</li>
+      <li><strong>Görsel/sesli:</strong> Fatura fotoğrafı, sesli not (işlem sonrası cihazda 30 gün)</li>
+    </ul>
+
+    <h2>3. İşleme Amaçları ve Hukuki Sebepler</h2>
+    <table class="data-table">
+      <thead><tr><th>Amaç</th><th>Hukuki Sebep</th></tr></thead>
+      <tbody>
+        <tr><td>Operasyonel iş akışını yürütmek</td><td>Sözleşmenin kurulması veya ifası (Md. 5/2-c)</td></tr>
+        <tr><td>Onay kaydını 7 yıl saklamak</td><td>Kanunen öngörülmüş olması — VUK, TTK (Md. 5/2-a)</td></tr>
+        <tr><td>Sistem loglarını 90 gün tutmak</td><td>Meşru menfaat (Md. 5/2-f)</td></tr>
+        <tr><td>Yapılamayan istekleri 180 gün tutmak</td><td>Meşru menfaat (Md. 5/2-f)</td></tr>
+        <tr><td>Güvenlik olaylarını raporlamak</td><td>Hukuki yükümlülüğün yerine getirilmesi (Md. 5/2-a)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Açık rıza gereken durumlar:</strong> Anonimleştirilmiş intent metninin yurt dışı LLM sağlayıcısına aktarımı. Rıza onboarding sırasında ayrı ekranda alınır ve <code>dijitas_onay_log</code>'a kaydedilir.</p>
+
+    <h2>4. Saklama Süreleri</h2>
+    <table class="data-table">
+      <thead><tr><th>Veri / Tablo</th><th>Süre</th><th>Gerekçe</th></tr></thead>
+      <tbody>
+        <tr><td>Sistem logları (<code>dijitas_log</code>)</td><td>90 gün</td><td>Operasyonel</td></tr>
+        <tr><td>Yapılamayan istekler (<code>dijitas_yapamadim_log</code>)</td><td>180 gün</td><td>Ürün iyileştirme</td></tr>
+        <tr><td>Onay kayıtları (<code>dijitas_onay_log</code>)</td><td><strong>7 yıl</strong></td><td>VUK + KVKK mali delil</td></tr>
+        <tr><td>İşlem guard (<code>dijitas_islem_guard</code>)</td><td>Kalıcı</td><td>Reconciliation kaynağı</td></tr>
+        <tr><td>Sesli not / fatura fotoğrafı</td><td>30 gün</td><td>İşlem sonrası operasyonel süre</td></tr>
+        <tr><td>LLM sağlayıcı geçici verisi</td><td>Sağlayıcı pol.</td><td>Model eğitimine sokulmaz (sözleşmesel)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Veri Minimizasyonu ve Anonimleştirme</h2>
+    <p>DijitAs'ın intent motoru LLM sağlayıcılara ham müşteri verisi göndermez. Cari isimleri, tutarlar ve belge ID'leri anonimleştirilir (örn. <code>[CARI_A]'a [TUTAR] fatura kes</code>); LLM cevabı gelince yerel çözümleyici gerçek veriyle birleştirir.</p>
+
+    <h2>6. Güvenlik Tedbirleri</h2>
+    <ul>
+      <li><strong>Disk şifreleme:</strong> LUKS AES-256-XTS. Anahtar Müşteri'dedir.</li>
+      <li><strong>Ağ:</strong> SSH key-only, UFW, fail2ban, unattended-upgrades.</li>
+      <li><strong>Uzak erişim:</strong> Tailscale tüneli, Müşteri'nin yazılı onayı ile.</li>
+      <li><strong>Onay yazılımı:</strong> ONAYLIYORUM zorunluluğu kod düzeyinde bypass edilemez.</li>
+      <li><strong>Yedek:</strong> Günlük şifreli yedek Hetzner İstanbul'a; geri yükleme Müşteri onayı ile.</li>
+      <li><strong>İhlal bildirimi:</strong> KVKK Md. 12/5 kapsamında 72 saat içinde Kurul ve ilgili kişilere bildirim.</li>
+    </ul>
+
+    <h2>7. Veri Sahibi Hakları (KVKK Madde 11)</h2>
+    <ul>
+      <li>Kişisel verinin işlenip işlenmediğini öğrenme</li>
+      <li>İşleniyorsa bilgi talep etme</li>
+      <li>Eksik/yanlış işlenmişse düzeltilmesini isteme</li>
+      <li>KVKK şartlarında silinmesini/yok edilmesini isteme</li>
+      <li>Otomatik analiz sonucu aleyhine çıkan karara itiraz etme</li>
+      <li>Kanuna aykırı işleme nedeniyle zararın giderilmesini talep etme</li>
+    </ul>
+    <p><strong>Başvuru:</strong> <a href="mailto:kvkk@dijitapro.com.tr">kvkk@dijitapro.com.tr</a> — Başvurular KVKK Madde 13 kapsamında 30 gün içinde yanıtlanır.</p>
+
+    <h2>8. Otomatik Karar</h2>
+    <p>DijitAs, insan onayı olmaksızın veri sahibi aleyhine sonuç doğuran otomatik karar vermez. Her yazma aksiyonu Müşteri'nin ONAYLIYORUM beyanına bağlıdır.</p>
+
+    <h2>9. Değişiklikler ve İletişim</h2>
+    <p>Metin güncellendiğinde Müşteri'ye yazılı bildirim yapılır ve güncel sürüm bu adreste yayımlanır.</p>
+    <p><strong>DijitA KVKK birimi:</strong> <a href="mailto:kvkk@dijitapro.com.tr">kvkk@dijitapro.com.tr</a></p>
+
+  </div>
+</section>
+
+</Base>
