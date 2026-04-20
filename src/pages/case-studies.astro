@@ -53,8 +53,11 @@ import Base from '../layouts/Base.astro';
   <div class="shell">
     <article class="case-hero">
       <div>
-        <div class="brand"><div class="brand-mark" style="background:#00A0FF">L</div>
-          <div><div class="brand-name">LEYONEX</div><div style="font-size:12px;color:var(--fg-3);font-family:var(--font-mono)">Fuar &amp; etkinlik organizasyonu · yurtiçi + yurtdışı · <a href="https://www.leyonex.com" target="_blank" rel="noopener" style="color:var(--dj-cyan-600)">leyonex.com</a></div></div>
+        <div class="brand">
+          <a href="https://www.leyonex.com" target="_blank" rel="noopener" aria-label="Leyonex">
+            <img src="/pilots/leyonex.png" alt="Leyonex" style="height:48px;width:auto;display:block" />
+          </a>
+          <div style="font-size:12px;color:var(--fg-3);font-family:var(--font-mono);margin-left:4px">Fuar &amp; etkinlik organizasyonu<br />yurtiçi + yurtdışı · <a href="https://www.leyonex.com" target="_blank" rel="noopener" style="color:var(--dj-cyan-600)">leyonex.com</a></div>
         </div>
         <h2>Bir fuar günü 30 görüşme. 50 soru. Sıfır unutulan hatırlatma.</h2>
         <p class="lede">Leyonex, yurtiçi ve yurtdışı fuarlarda stant, otel, ulaşım, hostes ve ikram organizasyonunu anahtar teslim kurguluyor. Fuar günü Burkay'ın cebinde 30 firma, 50 soru ve 20 farklı söz oluyor — hepsini akşama kadar hatırlamak imkânsız.</p>
@@ -76,7 +79,7 @@ import Base from '../layouts/Base.astro';
 
     <div class="case-grid">
       <article class="case-card">
-        <div class="top"><div class="mark" style="background:#002058">R</div><div class="sector">ENDÜSTRİYEL MAKİNE</div></div>
+        <div class="top"><img src="/pilots/rzg.png" alt="RZG Mühendislik" style="height:40px;width:auto" /><div class="sector">ENDÜSTRİYEL MAKİNE</div></div>
         <div class="body"><h3>RZG Mühendislik · boya makinesi tedarik &amp; kurulum</h3><p>Türk + yabancı tedarikçi alternatifleriyle opsiyonlu teklif hazırlığı, teklif dönüm noktaları, kabul sonrası kurulum/yedek parça takibi — tek rapor hattında.</p><p style="margin-top:8px;font-size:12px"><a href="https://www.rzgmuhendislik.com/tr" target="_blank" rel="noopener" style="color:var(--dj-cyan-600)">rzgmuhendislik.com</a></p></div>
         <div class="foot">
           <div class="kpi"><div class="v">3x</div><div class="k">teklif hızı</div></div>
@@ -86,7 +89,7 @@ import Base from '../layouts/Base.astro';
       </article>
 
       <article class="case-card">
-        <div class="top"><div class="mark" style="background:#0088DB">H</div><div class="sector">GÖMÜLÜ SİSTEM · PCB</div></div>
+        <div class="top"><img src="/pilots/hilow.svg" alt="Hilow" style="height:40px;width:auto" /><div class="sector">GÖMÜLÜ SİSTEM · PCB</div></div>
         <div class="body"><h3>Hilow · gömülü kart yazılım &amp; tasarım</h3><p>Her sipariş ürün ağacıyla stok kıyası; eksik bileşenlerde tedarikçi (veya muadil) iletişimi, mail takibi, üretim emri, stok hareketi ve irsaliye süreci uçtan uca.</p><p style="margin-top:8px;font-size:12px"><a href="https://www.hilow.com.tr" target="_blank" rel="noopener" style="color:var(--dj-cyan-600)">hilow.com.tr</a></p></div>
         <div class="foot">
           <div class="kpi"><div class="v">%78</div><div class="k">oto stok kontrol</div></div>
@@ -96,7 +99,7 @@ import Base from '../layouts/Base.astro';
       </article>
 
       <article class="case-card">
-        <div class="top"><div class="mark" style="background:#00A0FF">L</div><div class="sector">FUAR &amp; ETKİNLİK</div></div>
+        <div class="top"><img src="/pilots/leyonex.png" alt="Leyonex" style="height:36px;width:auto" /><div class="sector">FUAR &amp; ETKİNLİK</div></div>
         <div class="body"><h3>Leyonex · fuar organizasyon</h3><p>Stant, otel, ulaşım, ikram, hostes — hepsi Paraşüt kaydıyla birlikte. Sesli nota dönen fuar görüşmeleri hatırlatmaya, hatırlatmalar akşam brifingine dönüşüyor.</p><p style="margin-top:8px;font-size:12px"><a href="https://www.leyonex.com" target="_blank" rel="noopener" style="color:var(--dj-cyan-600)">leyonex.com</a></p></div>
         <div class="foot">
           <div class="kpi"><div class="v">30+</div><div class="k">/ fuar görüşme</div></div>
@@ -126,8 +129,10 @@ import Base from '../layouts/Base.astro';
 
     <div class="logo-strip">
       <div class="lbl">İLK PİLOT HALKASI · 3 FARKLI SEKTÖR</div>
-      <div class="logos">
-        <span>LEYONEX</span><span>RZG MÜHENDİSLİK</span><span>HILOW</span>
+      <div class="logos" style="gap:48px">
+        <a href="https://www.leyonex.com" target="_blank" rel="noopener"><img src="/pilots/leyonex.png" alt="Leyonex" style="height:34px;width:auto;opacity:0.85;filter:grayscale(0.3)" /></a>
+        <a href="https://www.rzgmuhendislik.com/tr" target="_blank" rel="noopener"><img src="/pilots/rzg.png" alt="RZG Mühendislik" style="height:46px;width:auto;opacity:0.85;filter:grayscale(0.3)" /></a>
+        <a href="https://www.hilow.com.tr" target="_blank" rel="noopener"><img src="/pilots/hilow.svg" alt="Hilow" style="height:36px;width:auto;opacity:0.85" /></a>
       </div>
     </div>
 
