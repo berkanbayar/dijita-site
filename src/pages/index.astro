@@ -66,17 +66,17 @@ import Base from '../layouts/Base.astro';
   <div class="shell hero-inner">
     <div>
       <span class="hero-kicker"><span class="dot">β</span><b>MVP · Nisan 2026</b> — İlk 3 pilot saha denemesi canlı</span>
-      <h1 class="display">Asistanınız ofiste çalışır.<br>Kurumsal veriniz&nbsp;yurt içinde&nbsp;kalır.</h1>
-      <p class="lede">DijitAs, Paraşüt'e konuşur, Telegram'dan cevap verir, fatura keser — ancak her kritik aksiyonda sizden <b style="background:var(--dj-cyan-50);color:var(--dj-navy-900);font-family:var(--font-mono);font-size:14px;padding:1px 6px;border-radius:3px;border:1px solid var(--dj-cyan-200)">ONAYLIYORUM</b> onayı bekler. Paraşüt verisi ofis cihazında durur; LLM'e yalnızca anonim intent metni gider.</p>
+      <h1 class="display">Günün iş yükünü&nbsp;asistana&nbsp;bırakın.<br>Onay sizde kalsın.</h1>
+      <p class="lede">DijitAs Paraşüt'e konuşur, Telegram'dan cevap verir, teklif hazırlar, fatura keser — ama her kritik aksiyonda sizden <b style="background:var(--dj-cyan-50);color:var(--dj-navy-900);font-family:var(--font-mono);font-size:14px;padding:1px 6px;border-radius:3px;border:1px solid var(--dj-cyan-200)">ONAYLIYORUM</b> onayı bekler. İş biter, siz karar verirsiniz.</p>
       <div class="ctas">
         <a class="btn btn-primary btn-lg" href="/iletisim">Demo talep et <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
         <a class="btn btn-secondary btn-lg" href="/urun"><i data-lucide="play" style="width:16px;height:16px"></i> 3 dakikalık ürün turu</a>
       </div>
       <div class="trust-row">
-        <span><i data-lucide="shield-check" style="width:15px;height:15px;color:var(--dj-trust-500)"></i> <b>KVKK uyumlu</b>, veri yurt içinde</span>
-        <span><i data-lucide="cpu" style="width:15px;height:15px;color:var(--fg-3)"></i> Edge-compute · ofis cihazı</span>
+        <span><i data-lucide="check-circle-2" style="width:15px;height:15px;color:var(--dj-trust-500)"></i> <b>Onayla iş yapar</b> · denetlenebilir</span>
         <span><i data-lucide="database" style="width:15px;height:15px;color:var(--fg-3)"></i> Paraşüt entegrasyonu</span>
         <span><i data-lucide="send" style="width:15px;height:15px;color:var(--fg-3)"></i> Telegram birincil · WhatsApp Faz 2</span>
+        <span><i data-lucide="mic" style="width:15px;height:15px;color:var(--fg-3)"></i> Ses + metin + görsel</span>
       </div>
     </div>
     <div class="chat-mock">
@@ -136,8 +136,8 @@ import Base from '../layouts/Base.astro';
         <div style="font: 500 13.5px var(--font-sans); color: var(--fg-3); margin-top: 8px; line-height: 1.5;">Tipik 20 kişilik KOBİ'nin "sistem kullanan personel" aylık maliyeti.</div>
       </div>
       <div>
-        <div style="font: 700 48px var(--font-display); color: var(--dj-navy-900); letter-spacing: -0.028em; line-height: 1;">%0</div>
-        <div style="font: 500 13.5px var(--font-sans); color: var(--fg-3); margin-top: 8px; line-height: 1.5;">Türkiye KOBİ'lerinin KVKK uyumlu, veriyi yurt içinde tutan AI asistanı var — şu ana kadar.</div>
+        <div style="font: 700 48px var(--font-display); color: var(--dj-navy-900); letter-spacing: -0.028em; line-height: 1;">30+</div>
+        <div style="font: 500 13.5px var(--font-sans); color: var(--fg-3); margin-top: 8px; line-height: 1.5;">Fuar günü bir satış temsilcisinin unutulmadan kayıt altına alması gereken not sayısı.</div>
       </div>
     </div>
   </div>
@@ -211,15 +211,15 @@ import Base from '../layouts/Base.astro';
   <div class="shell">
     <div class="kvkk-strip">
       <div>
-        <span class="badge badge-green" style="margin-bottom:14px"><i data-lucide="shield-check" style="width:11px;height:11px"></i>KVKK &amp; GÜVENLİK</span>
-        <h3 style="font-family:var(--font-display);font-size:28px;line-height:1.2;letter-spacing:-0.02em;font-weight:700;color:var(--dj-navy-900);margin-bottom:12px">Veri nerede durur, kim erişir, ne kadar saklanır — hepsi yazılı.</h3>
-        <p style="font-size:15px;color:var(--fg-2);line-height:1.6;margin-bottom:20px">Paraşüt cari, fatura, tahsilat verisi ofis cihazında ve yurt içi yedekte kalır. LLM sağlayıcılara yalnızca anonimleştirilmiş intent metni (cari/tutar maskelenmiş) gider. Mesajlaşma Telegram Bot API üzerinden (Faz 2'de WhatsApp Business API opsiyonu). Tüm 3. parti akışları KVKK sayfasında listelidir.</p>
-        <a class="btn btn-secondary btn-sm" href="/kvkk-guvenlik">KVKK raporunu oku <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+        <span class="badge badge-green" style="margin-bottom:14px"><i data-lucide="check-circle-2" style="width:11px;height:11px"></i>ONAY &amp; DENETİM</span>
+        <h3 style="font-family:var(--font-display);font-size:28px;line-height:1.2;letter-spacing:-0.02em;font-weight:700;color:var(--dj-navy-900);margin-bottom:12px">Her aksiyon onaylı. Her onay kayıtlı. Her karar size ait.</h3>
+        <p style="font-size:15px;color:var(--fg-2);line-height:1.6;margin-bottom:20px">Fatura, tahsilat, teklif, sipariş — yazılı ONAYLIYORUM alınmadan hiçbiri işlemez. Her onay bir guard ID ile 7 yıl saklanır. "Asistan kafasına göre iş yapmış" diye bir şey olamaz; denetlenmek istediğin her kararın kim, ne zaman, hangi kanaldan verdiğini dakikalar içinde bulursun.</p>
+        <a class="btn btn-secondary btn-sm" href="/kvkk-guvenlik">Güvenlik notları <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
       </div>
       <div class="kvkk-facts">
-        <div class="kvkk-fact"><div class="k">VERİ YURT İÇİ</div><div class="v">LUKS disk şifreleme · ofis cihazı</div></div>
-        <div class="kvkk-fact"><div class="k">YÖNETİM ERİŞİMİ</div><div class="v">Tailscale SSH · key-only auth</div></div>
-        <div class="kvkk-fact"><div class="k">LOG SAKLAMA</div><div class="v">Onay kaydı 7 yıl · işlem log 90g</div></div>
+        <div class="kvkk-fact"><div class="k">ONAY AKIŞI</div><div class="v">ONAYLIYORUM · iki katmanlı hash · idempotent</div></div>
+        <div class="kvkk-fact"><div class="k">DENETİM KAYDI</div><div class="v">Her onay 7 yıl · append-only · dışa aktarılır</div></div>
+        <div class="kvkk-fact"><div class="k">GERİ AL</div><div class="v">Skill #15 · son aksiyonu sorarak geri alır</div></div>
         <div class="kvkk-fact"><div class="k">3. PARTİ</div><div class="v">Paraşüt, Resend (EU), Plausible</div></div>
       </div>
     </div>
@@ -237,10 +237,10 @@ import Base from '../layouts/Base.astro';
     </div>
     <div class="blog-grid">
       <a class="blog-card" href="/blog">
-        <div class="thumb t1">EDGE-COMPUTE</div>
+        <div class="thumb t1">ONAY AKIŞI</div>
         <div class="meta">12 NİSAN 2026 · 7 DK OKUMA</div>
-        <h4>KOBİ için AI asistanı neden bulutta değil, ofiste olmalı?</h4>
-        <p>Veri egemenliği, KVKK, latency ve maliyet — yurt içinde edge-compute'un dört gerekçesi.</p>
+        <h4>ONAYLIYORUM guard'ı neden bir kelime üzerine kuruldu?</h4>
+        <p>Tek tıklık onaylar riskli; parola yorucu. Dokuz harfli bir söz hem hızlı hem denetlenebilir — ve 7 yıl saklanır.</p>
       </a>
       <a class="blog-card" href="/blog">
         <div class="thumb t2">ENTEGRASYON</div>
