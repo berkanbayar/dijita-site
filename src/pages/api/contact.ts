@@ -18,7 +18,7 @@ interface ContactPayload {
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.RESEND_API_KEY;
-  const toEmail = import.meta.env.CONTACT_TO_EMAIL || 'iletisim@dijitapro.com.tr';
+  const toEmail = import.meta.env.CONTACT_TO_EMAIL || 'info@dijitapro.com.tr';
   const fromEmail = import.meta.env.CONTACT_FROM_EMAIL || 'DijitAs <noreply@dijitapro.com.tr>';
 
   let data: Partial<ContactPayload> = {};
